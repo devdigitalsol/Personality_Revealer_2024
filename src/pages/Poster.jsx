@@ -8,8 +8,8 @@ import CONFIDENT from "./../assets/img1.png"
 import RELIABLE from "./../assets/img2.png"
 import CONSISTENCY from "./../assets/img3.png"
 import html2canvas from "html2canvas";
-import Loader from "../components/Loader"
-
+import Loader from "../components/Loader";
+import circle from "../assets/circle2.png";
 
 const Poster = () => {
 
@@ -128,13 +128,13 @@ const Poster = () => {
       <div className="screenHeight w-full">
         <div className="px-6 py-6 relative w-full mainBox2" id="templateView">
             {ans === "confidence" && (
-              <img src={CONFIDENT} alt="" />
+              <><img src={CONFIDENT} alt="" /> <div className="img_sec"><img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div><h4>DR. {user?.drName}</h4></>
             )}
             {ans === "reliability" && (
-              <img src={RELIABLE} alt="" />
+              <><img src={RELIABLE} alt="" /><div className="img_sec"> <img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div> <h4>DR. {user?.drName}</h4></>
             )}
             {ans === "consistency" && (
-              <img src={CONSISTENCY} alt="" />
+              <><img src={CONSISTENCY} alt="" /><div className="img_sec"> <img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div><h4>DR. {user?.drName}</h4></>
             )}
         </div>
         

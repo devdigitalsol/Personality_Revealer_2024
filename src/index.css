@@ -193,6 +193,40 @@ button.btn:disabled {
   @apply text-slate-600 font-semibold;
 }
 
+.mainBox2 {
+  position: relative;
+}
+
+.mainBox2 h4 {
+  position: absolute;
+  font-weight: 900;
+  color: #6400A0;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  margin-bottom: 20px;
+}
+.img_sec {
+  position: absolute;
+  top: 26%;
+  width: 140px;
+  height: 140px;
+
+}
+.circle {
+  width: 100%;
+}
+
+.user_photo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+}
+
+
 @media screen and (max-width: 435px){
   .bottom_logo{
     max-width:200px
