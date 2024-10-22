@@ -227,6 +227,36 @@ button.btn:disabled {
   border-radius: 50%;
 }
 
+.mainBox3 {
+  background-color: #ffe9ff;
+  /* #662d91 */
+  background: url("./assets/frame.png") no-repeat;
+  background-size: 100% 100%;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 30px;
+  
+}
+
+.mainBox3 p {
+  padding:15px 0px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+.okBtn {
+  width: 150px;
+  height: 61px;
+  background-image:url("./assets/okBtn2.png");
+  overflow: hidden;
+  text-indent: -9999px;
+  margin:10px auto 0 auto;
+  &:disabled {
+    background-position: 0 0;
+  }
+}
+
 
 @media screen and (max-width: 435px){
   .bottom_logo{
