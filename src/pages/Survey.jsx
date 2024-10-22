@@ -18,7 +18,7 @@ const Survey = () => {
   }, []);
 
   const handleClick = () => {
-    navigate("/questions");
+    navigate("/description");
   };
 
   return (
