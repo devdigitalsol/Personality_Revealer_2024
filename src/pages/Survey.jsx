@@ -1,78 +1,25 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Options from "../components/Options";
 import shuffle from "../components/Shuffle";
-import { AppContext } from "../context/AppContext";
 import questionsData from "./../data/featureData";
 
 const Survey = () => {
   const navigate = useNavigate();
-  const { user, setAns } = useContext(AppContext);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isSelected, setIsSelected] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [nextQuestion, setNextQuestion] = useState(false);
-  const [totalQuestions, setTotalQuestions] = useState(0);
-
-  const [confidence, setConfidence] = useState(0);
-  const [reliability, setReliability] = useState(0);
-  const [consistency, setConsistency] = useState(0);
-
-  useEffect(() => {
-    if (!user?.drName) {
-      navigate("/");
-    }
-  }, [navigate, user?.drName]);
 
   useEffect(() => {
     const shuffledQuestions = shuffle(questionsData);
     setQuestions(shuffledQuestions);
-    setTotalQuestions(shuffledQuestions.length);
   }, []);
 
-  const checkResult = useCallback(() => {
-    const personalities = { confidence, reliability, consistency };
-    const maxValue = Math.max(...Object.values(personalities));
-    const topPersonalities = Object.keys(personalities).filter(
-      (key) => personalities[key] === maxValue
-    );
-
-    let finalPersonality;
-    if (topPersonalities.length === 1) {
-      finalPersonality = topPersonalities[0];
-    } else {
-      finalPersonality =
-        topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
-    }
-
-    setAns(finalPersonality);
-    navigate("/poster");
-  }, [confidence, reliability, consistency, navigate, setAns]);
-
-  const gotoNext = useCallback(() => {
-    const nextqt = currentQuestion + 1;
-    if (nextqt < questions.length) {
-      setCurrentQuestion(nextqt);
-      setIsSelected(false);
-      setNextQuestion(false);
-    } else {
-      setGameOver(true);
-      checkResult();
-    }
-    document.querySelectorAll(".selected").forEach((btn) => {
-      btn.classList.remove("selected");
-    });
-  }, [checkResult, currentQuestion, questions.length]);
-
-  useEffect(() => {
-    if (nextQuestion) {
-      setTimeout(() => {
-        gotoNext();
-      }, 1000);
-    }
-  }, [nextQuestion, gotoNext]);
+  const handleClick = () => {
+    navigate("/description");
+  };
 
   return (
     <div className="screenHeight w-full bg-[#ffe9ff] border-[2px]">
@@ -98,13 +45,12 @@ const Survey = () => {
               isSelected={isSelected}
               setIsSelected={setIsSelected}
               setGameOver={setGameOver}
-              setNextQuestion={setNextQuestion}
-              setConfidence={setConfidence}
-              setReliability={setReliability}
-              setConsistency={setConsistency}
             />
           )}
         </div>
+        <button onClick={handleClick} className="goBtn">
+          ENTER
+        </button>
       </div>
     </div>
   );
