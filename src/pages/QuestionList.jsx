@@ -1,13 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Options from "../components/Options";
 import shuffle from "../components/Shuffle";
 import { AppContext } from "../context/AppContext";
-import questionsData from "./../data/data"; 
+import questionsData from "./../data/data";
 
 const QuestionList = () => {
-  
   const navigate = useNavigate();
   const { user, setAns } = useContext(AppContext);
   const [questions, setQuestions] = useState([]);
@@ -16,12 +15,10 @@ const QuestionList = () => {
   const [gameOver, setGameOver] = useState(false);
   const [nextQuestion, setNextQuestion] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
-  
+
   const [confidence, setConfidence] = useState(0);
-  const [reliability, setReliability] = useState(0);
+  const [versatility, setVersatility] = useState(0);
   const [consistency, setConsistency] = useState(0);
-
-
 
   useEffect(() => {
     if (!user?.drName) {
@@ -36,7 +33,7 @@ const QuestionList = () => {
   }, []);
 
   const checkResult = useCallback(() => {
-    const personalities = { confidence, reliability, consistency };
+    const personalities = { confidence, versatility, consistency };
     const maxValue = Math.max(...Object.values(personalities));
     const topPersonalities = Object.keys(personalities).filter(
       (key) => personalities[key] === maxValue
@@ -46,12 +43,13 @@ const QuestionList = () => {
     if (topPersonalities.length === 1) {
       finalPersonality = topPersonalities[0];
     } else {
-      finalPersonality = topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
+      finalPersonality =
+        topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
 
     setAns(finalPersonality);
     navigate("/poster");
-  }, [confidence, reliability, consistency, navigate, setAns]);
+  }, [confidence, versatility, consistency, navigate, setAns]);
 
   const gotoNext = useCallback(() => {
     const nextqt = currentQuestion + 1;
@@ -79,7 +77,7 @@ const QuestionList = () => {
   return (
     <div className="screenHeight w-full bg-[#ffe9ff] border-[2px]">
       <Header />
-      <div className="px-6 relative w-full mainBox2 mt-10 " >
+      <div className="px-6 relative w-full mainBox2 mt-10 ">
         <div
           className="borderCustom flex flex-col gap-6 pt-12 items-center justify-center"
           style={{ height: "90%" }}
@@ -102,7 +100,7 @@ const QuestionList = () => {
               setGameOver={setGameOver}
               setNextQuestion={setNextQuestion}
               setConfidence={setConfidence}
-              setReliability={setReliability}
+              setVersatility={setVersatility}
               setConsistency={setConsistency}
             />
           )}

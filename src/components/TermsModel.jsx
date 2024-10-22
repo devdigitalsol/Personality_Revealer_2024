@@ -12,17 +12,20 @@ const TermsModel = ({ showTerms, setShowTerms }) => {
               </h4>
               <p>
                 I have opted to use the{" "}
-                <span className="uppercase">Personality revealer</span>{" "}
+                <span className="uppercase">
+                  one in a billion personality revealer
+                </span>{" "}
                 activity web link of my own volition and agree to upload my
                 picture and personal details therein for participating in{" "}
-                <span className="uppercase">Personality revealer</span>{" "}
+                <span className="uppercase">
+                  one in a billion Personality revealer
+                </span>{" "}
                 activity. I state that the picture and personal details shared
                 by me are true and accurate and the Company shall not have any
                 liability arising from its reliance on the same. I understand
                 that no data will be retained by the Company post the event. I
                 agree that the all contents used for promotion of the event
-                shall be the property of GE HEALTHCARE, and meant for its use
-                only.
+                shall be the property of GE, and meant for its use only.
               </p>
               <button
                 type="button"

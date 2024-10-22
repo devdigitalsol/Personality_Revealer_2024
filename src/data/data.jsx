@@ -1,182 +1,129 @@
 const questions = [
   {
     id: 1,
-    question: "When organizing a group activity, how do you contribute?",
+    question: "What’s your approach to handling unexpected changes in plans?",
     options: [
       {
-        data: "I lead and make decisions confidently.",
+        data: "I remain calm, assess the situation, and quickly take charge of the new direction",
         personality: "Confidence",
       },
       {
-        data: "I ensure everything is well-coordinated and smooth.",
-        personality: "Reliability",
+        data: "I stick to the core objectives, making sure the outcome remains aligned with the original goal.",
+        personality: "Consistency",
       },
       {
-        data: "I stick to a clear plan and ensure everything is executed smoothly.",
-        personality: "Consistency",
-      }
+        data: " I easily shift gears and explore new ways to approach the task. ",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 2,
-    question: "What’s your approach to handling unexpected changes in plans?",
+    question: "How do you usually deal with stress?",
     options: [
       {
-        data: "I adapt quickly and lead others through it.",
+        data: " I tackle stress head-on, maintaining a strong and composed demeanor.",
         personality: "Confidence",
       },
       {
-        data: "I make sure all the basics are covered before adapting.",
-        personality: "Reliability",
+        data: "I follow my routine and rely on tried-and-tested stress-relief techniques.",
+        personality: "Consistency",
       },
       {
-        data: " I Stick to familiar methods and make small adjustments as needed. ",
-        personality: "Consistency",
-      }
+        data: "I adapt my coping strategies depending on the situation, balancing work and relaxation.",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 3,
-    question: "How do you handle disagreements in a group setting?",
+    question: "What’s your approach to learning new imaging technologies?",
     options: [
       {
-        data: "I assert my opinion confidently but respectfully.",
+        data: "I dive in with confidence, mastering the new technology quickly.",
         personality: "Confidence",
       },
       {
-        data: " I remain calm and focus on finding practical solutions.",
-        personality: "Reliability",
+        data: "I follow a structured learning approach to ensure thorough understanding.",
+        personality: "Consistency",
       },
       {
-        data: "I stay focused on the facts and find a balanced outcome. ",
-        personality: "Consistency",
-      }
+        data: " I’m open to learning through various methods, from hands-on practice to online courses.",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 4,
-    question: "How do you usually deal with stress?",
+    question: "When a colleague needs help with a difficult diagnosis, you :",
     options: [
       {
-        data: " I push through and stay in control.",
+        data: "I offer my insights and provide a clear path forward.",
         personality: "Confidence",
       },
       {
-        data: "I manage it with careful planning and routine.",
-        personality: "Reliability",
+        data: "I follow standard procedures and collaborate to ensure the diagnosis is accurate.",
+        personality: "Consistency",
       },
       {
-        data: " I stick to your routine to keep everything under control.",
-        personality: "Consistency",
-      }
+        data: "I explore different perspectives, offering multiple approaches to solve the problem.",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 5,
-    question: "When celebrating a success, you tend to:",
+    question:
+      "How do you handle disagreements with a colleague over a diagnosis?",
     options: [
       {
-        data: "Enjoy the moment and feel proud.",
+        data: "I confidently present my rationale and engage in a constructive discussion.",
         personality: "Confidence",
       },
       {
-        data: "Reflect on how to maintain this success.",
-        personality: "Reliability",
+        data: " I rely on clinical guidelines and evidence-based practices to back up my opinion.",
+        personality: "Consistency",
       },
       {
-        data: " I maintain the usual routine but with a nod to success.",
-        personality: "Consistency",
-      }
+        data: "I’m open to hearing their perspective and finding a solution that combines both views.",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 6,
-    question: "What’s your approach to learning new imaging technologies?",
+    question: "How do you approach patient communication in radiology?",
     options: [
       {
-        data: "I’m excited to explore and try it firsthand.",
+        data: "I communicate clearly and confidently, ensuring the patient understands the process.",
         personality: "Confidence",
       },
       {
-        data: "I follow a detailed, step-by-step learning process.",
-        personality: "Reliability",
+        data: "I maintain a consistent, empathetic approach in all interactions to build trust.",
+        personality: "Consistency",
       },
       {
-        data: " I follow a structured learning plan and practice consistently.",
-        personality: "Consistency",
-      }
+        data: ": I tailor my communication style to each patient’s needs, ensuring they feel comfortable.",
+        personality: "Versatility",
+      },
     ],
   },
   {
     id: 7,
-    question: "When a colleague needs help with a difficult diagnosis, you:",
-    options: [
-      {
-        data: "Offer your insights confidently based on experience.",
-        personality: "Confidence",
-      },
-      {
-        data: "Guide them through the necessary steps or protocols. ",
-        personality: "Reliability",
-      },
-      {
-        data: "Offer a thorough review of the case based on your experience. ",
-        personality: "Consistency",
-      }
-    ],
-  },
-  {
-    id: 8,
-    question: "How do you handle disagreements with a colleague over a diagnosis?",
-    options: [
-      {
-        data: "I stand by my opinion confidently, based on my experience.",
-        personality: "Confidence",
-      },
-      {
-        data: " I stick to established guidelines and protocols.",
-        personality: "Reliability",
-      },
-      {
-        data: "I stick to established protocols and evidence for a resolution.",
-        personality: "Consistency",
-      }
-    ],
-  },
-  {
-    id: 9,
-    question: "How do you approach patient communication in radiology?",
-    options: [
-      {
-        data: "I explain findings confidently and clearly.",
-        personality: "Confidence",
-      },
-      {
-        data: "I ensure the patient understands and feels comfortable.",
-        personality: "Reliability",
-      },
-      {
-        data: " I provide clear, consistent information based on facts.",
-        personality: "Consistency",
-      }
-    ],
-  },
-  {
-    id: 10,
     question: "In a high-pressure situation, you typically:",
     options: [
       {
-        data: "Take charge and make decisions quickly. ",
+        data: "I remain composed and lead the team through the challenge.",
         personality: "Confidence",
       },
       {
-        data: "Stay calm and methodical under pressure. ",
-        personality: "Reliability",
+        data: "I stick to proven methods to handle the pressure effectively. ",
+        personality: "Consistency",
       },
       {
-        data: "Stick to established protocols to ensure a smooth workflow.",
-        personality: "Consistency",
-      }
+        data: "I adapt quickly, using different strategies depending on the situation’s demands",
+        personality: "Versatility",
+      },
     ],
   },
 ];
