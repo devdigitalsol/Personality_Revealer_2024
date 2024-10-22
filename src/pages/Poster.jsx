@@ -1,84 +1,62 @@
-import React,{useContext, useEffect, useState} from "react";
+import { useState, useContext, useEffect } from "react";
+// import axios from "axios";
+import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"
-import axios from "axios";
-import {AppContext} from "../context/AppContext"
-import DRLLOGO from "./../assets/drl_logo.png"
-import CONFIDENT from "./../assets/img1.png"
-import RELIABLE from "./../assets/img2.png"
-import CONSISTENCY from "./../assets/img3.png"
+import CONFIDENT from "./../assets/img1.png";
+import RELIABLE from "./../assets/img2.png";
+import CONSISTENCY from "./../assets/img3.png";
 import html2canvas from "html2canvas";
 import Loader from "../components/Loader";
 import circle from "../assets/circle2.png";
 
 const Poster = () => {
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user, ans } = useContext(AppContext);
-  
 
-  const downLoadPoster = () => {
-    setLoading(true);
-    window.scrollTo(0, 0);
-    // htmlToImage
-    //   .toJpeg(node, { quality: 0.95 })
-    //   .then(function (dataUrl) {
-    //     const link = document.createElement("a");
-    //     link.href = dataUrl;
-    //     link.target = "_blank";
-    //     link.setAttribute("download", "image.jpeg");
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     setLoading(false);
-    //   })
-    //   .catch(function (error) {
-    //     setLoading(false);
-    //     console.log(error);
-    //     alert("oops, something went wrong!", error);
-    //   });
-    html2canvas(document.getElementById("templateView"), {
-      allowTaint: true,
-      useCORS: true,
-      logging: true,
-      scrollX: 0,
-      scrollY: -window.scrollY,
-      onrendered: function (canvas) {
-        document.body.appendChild(canvas);
-        window.scrollTo(0, 0);
-      },
-    })
-      .then(async (canvas) => {
-        var myImage = canvas.toDataURL("image/jpeg", 0.9);
-        // setViewImg(myImage);
-        const jsonData = {
-          empId: user.empId,
-          drName: user.drName,
-          poster: myImage,
-        };
-        try {
-          const response = await axios.post(
-            "https://www.omezfirstpersonalityrevealer.in/add-user.php",
-            JSON.stringify(jsonData)
-          );
-          const link = document.createElement("a");
-          link.href = `https://www.omezfirstpersonalityrevealer.in/${response.data.path}`;
-          link.target = "_blank";
-          link.setAttribute("download", "image.jpeg");
-          document.body.appendChild(link);
-          link.click();
-          setLoading(false);
-        } catch (error) {
-          console.log(error);
-        }
-      })
-      .catch(function (error) {
-        setLoading(false);
-        console.log(error);
-        alert("oops, something went wrong!", error);
-      });
-  };
-
+  // const downLoadPoster = () => {
+  //   setLoading(true);
+  //   window.scrollTo(0, 0);
+  //   html2canvas(document.getElementById("templateView"), {
+  //     allowTaint: true,
+  //     useCORS: true,
+  //     logging: true,
+  //     scrollX: 0,
+  //     scrollY: -window.scrollY,
+  //     onrendered: function (canvas) {
+  //       document.body.appendChild(canvas);
+  //       window.scrollTo(0, 0);
+  //     },
+  //   })
+  //     .then(async (canvas) => {
+  //       var myImage = canvas.toDataURL("image/jpeg", 0.9);
+  //       const jsonData = {
+  //         empId: user.empId,
+  //         drName: user.drName,
+  //         poster: myImage,
+  //       };
+  //       try {
+  //         const response = await axios.post(
+  //           "https://www.omezfirstpersonalityrevealer.in/add-user.php",
+  //           JSON.stringify(jsonData)
+  //         );
+  //         const link = document.createElement("a");
+  //         link.href = `https://www.omezfirstpersonalityrevealer.in/${response.data.path}`;
+  //         link.target = "_blank";
+  //         link.setAttribute("download", "image.jpeg");
+  //         document.body.appendChild(link);
+  //         link.click();
+  //         setLoading(false);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       setLoading(false);
+  //       console.log(error);
+  //       alert("oops, something went wrong!", error);
+  //     });
+  // };
 
   const downloadImage = () => {
     // setIsLoading(true);
@@ -107,13 +85,13 @@ const Poster = () => {
       })
       .catch(function (error) {
         console.log(error);
-        // setIsLoading(false);
+        setLoading(false);
         alert("oops, something went wrong!", error);
       });
   };
 
   const backBtn = () => {
-    navigate("/")
+    navigate("/");
     window.location.reload();
   };
   useEffect(() => {
@@ -137,7 +115,7 @@ const Poster = () => {
               <><img src={CONSISTENCY} alt="" /><div className="img_sec"> <img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div><h4>DR. {user?.drName}</h4></>
             )}
         </div>
-        
+
         {/* <Header />
         <div className="px-6 relative w-full mainBox2">
           <div
