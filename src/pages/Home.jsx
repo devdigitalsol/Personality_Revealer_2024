@@ -40,7 +40,7 @@ const Home = () => {
 
     setUser(formData);
     toast.success("Form submitted successfully");
-    navigate("/description");
+    navigate("/questions");
   };
 
   return (

@@ -120,20 +120,20 @@ button.btn:disabled {
   }
 }
 .ansBtn {
-    width: 100%;
-    height: 80px;
-    background-image: url(/src/assets/option_blank.png);
-    background-size: cover;
-    background-position: center;
-    color: #662d91;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, opacity 0.3s;
-    position: relative;
-    background-repeat: no-repeat;
-    padding: 16px 15px;
-    line-height: 20px;
+  width: 100%;
+  height: 88px;
+  background-image: url(/src/assets/option_blank.png);
+  background-size: cover;
+  background-position: center;
+  color: #662d91;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  position: relative;
+  background-repeat: no-repeat;
+  padding: 8px 27px;
+  line-height: 16px;
 }
 /* .ansBtn:hover:not(:disabled) {
     opacity: 0.8;
