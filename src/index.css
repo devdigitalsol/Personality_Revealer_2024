@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.screenHeight {
+  height: 100vh; 
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  @apply relative;
+}
+.form-control {
+  @apply focus:outline-none appearance-none w-full leading-6 text-slate-900 placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2  shadow-sm;
+}
+
+.btn {
+  @apply bg-[#662d91] text-white shadow text-sm leading-6 font-medium py-2 px-4 rounded-lg;
+}
+button.btn:disabled {
+  background-image: none;
+  @apply bg-[#f55bff]/40;
+}
+.mainBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  flex-grow: 1;
+}
+.mainBox2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffe9ff;
+}
+.borderCustom {
+  /* border: 7px #f55bff; */
+  border: 7px #f55bff;
+  /* #662d91 */
+  border-style: ridge;
+  border-radius: 0.5rem;
+  background: #ffe9ff;
+  position: relative;
+  padding-bottom: calc(1rem + 27px);
+  width: 100%;
+  height: 100%;
+}
+
+.customCheckbox {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  overflow: hidden;
+  input {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+  }
+  i {
+    width: 17px;
+    height: 17px;
+    background: url("./assets/checkboxBorder.png");
+    display: block;
+  }
+  input:checked + i {
+    background-color: #662d91;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  }
+}
+.checkboxContainer {
+  .customCheckbox {
+    flex: auto 0 0;
+  }
+  p {
+    flex: 1 0 0;
+  }
+}
+.goBtn {
+  width: 178px;
+  height: 58px;
+  background-image: url("./assets/btn1.png");
+  background-position: 0 -54px;
+  overflow: hidden;
+  text-indent: -9999px;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  &:disabled {
+    background-position: 0 0;
+  }
+}
+.nextBtn {
+  width: 215px;
+  height: 83px;
+  background-image: url("./assets/nextBtn.png");
+  background-position: 0 -83px;
+  overflow: hidden;
+  text-indent: -9999px;
+  position: absolute;
+  bottom: -42px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  &:disabled {
+    background-position: 0 0;
+  }
+}
+.ansBtn {
+    width: 100%;
+    height: 80px;
+    background-image: url(/src/assets/option_blank.png);
+    background-size: cover;
+    background-position: center;
+    color: #662d91;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    position: relative;
+    background-repeat: no-repeat;
+    padding: 16px 15px;
+    line-height: 20px;
+}
+/* .ansBtn:hover:not(:disabled) {
+    opacity: 0.8;
+} */
+
+.ansBtn.selected {
+  background-image: url("./assets/color_option.png");
+}
+
+/* .ansBtn.selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(75, 31, 108, 0.5); 
+  border-radius: 8px; 
+} */
+
+/* .ansBtn:disabled {
+  opacity: 0.6; 
+  cursor: not-allowed;
+} */
+
+.scoreBoard {
+  width: 296px;
+  height: 63px;
+  background: url("./assets/board.png");
+  position: absolute;
+  top: -34px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.backBtn {
+  width: 114px;
+  height: 55px;
+  background: url("./assets/backBtn.png");
+  overflow: hidden;
+  text-indent: 9999px;
+}
+.downloadBtn {
+  width: 171px;
+  height: 55px;
+  background: url("./assets/downloadBtn.png");
+  overflow: hidden;
+  text-indent: 9999px;
+}
+.useOnly {
+  position: absolute;
+  right: 4px;
+  bottom: 5%;
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
+  font-size: 0.45rem;
+  @apply text-slate-600 font-semibold;
+}
+
+@media screen and (max-width: 435px){
+  .bottom_logo{
+    max-width:200px
+ }
+ .top_logo{
+   max-width: 200px;
+ }
+}
+
+@media screen and (min-width: 430px){
+  .mainBox{
+    padding: 60px;
+  }
+  .top_logo{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .form-control{
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 700px){
+  .form-control{
+    font-size: 26px;
+  }
+  .form-group{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .btn{
+    font-size: 26px;
+    padding: 20px;
+  }
+  .checkboxContainer{
+     font-size: 28px;
+  }
+}
+
