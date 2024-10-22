@@ -105,15 +105,56 @@ const Poster = () => {
       {loading && <Loader />}
       <div className="screenHeight w-full">
         <div className="px-6 py-6 relative w-full mainBox2" id="templateView">
-            {ans === "confidence" && (
-              <><img src={CONFIDENT} alt="" /> <div className="img_sec"><img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div><h4>DR. {user?.drName}</h4></>
-            )}
-            {ans === "reliability" && (
-              <><img src={RELIABLE} alt="" /><div className="img_sec"> <img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div> <h4>DR. {user?.drName}</h4></>
-            )}
-            {ans === "consistency" && (
-              <><img src={CONSISTENCY} alt="" /><div className="img_sec"> <img src={circle} alt="" className="circle"/> {user?.photo && <img src={user.photo} alt="userphoto" className="user_photo"/>} </div><h4>DR. {user?.drName}</h4></>
-            )}
+          {ans === "confidence" && (
+            <>
+              <img src={CONFIDENT} alt="" />{" "}
+              <div className="img_sec">
+                <img src={circle} alt="" className="circle" />{" "}
+                {user?.photo && (
+                  <img
+                    src={user.photo}
+                    alt="userphoto"
+                    className="user_photo"
+                  />
+                )}{" "}
+              </div>
+              <h4>DR. {user?.drName}</h4>
+            </>
+          )}
+          {ans === "reliability" && (
+            <>
+              <img src={RELIABLE} alt="" />
+              <div className="img_sec">
+                {" "}
+                <img src={circle} alt="" className="circle" />{" "}
+                {user?.photo && (
+                  <img
+                    src={user.photo}
+                    alt="userphoto"
+                    className="user_photo"
+                  />
+                )}{" "}
+              </div>{" "}
+              <h4>DR. {user?.drName}</h4>
+            </>
+          )}
+          {ans === "consistency" && (
+            <>
+              <img src={CONSISTENCY} alt="" />
+              <div className="img_sec">
+                {" "}
+                <img src={circle} alt="" className="circle" />{" "}
+                {user?.photo && (
+                  <img
+                    src={user.photo}
+                    alt="userphoto"
+                    className="user_photo"
+                  />
+                )}{" "}
+              </div>
+              <h4>DR. {user?.drName}</h4>
+            </>
+          )}
         </div>
 
         {/* <Header />
