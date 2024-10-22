@@ -45,6 +45,12 @@ button.btn:disabled {
   justify-content: center;
   background-color: #ffe9ff;
 }
+.mainBox3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
 .borderCustom {
   /* border: 7px #f55bff; */
   border: 7px #f55bff;
