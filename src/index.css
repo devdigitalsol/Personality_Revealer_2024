@@ -167,6 +167,10 @@ button.btn:disabled {
   background-image: url("./assets/color_option.png");
 }
 
+.ansBtn2.selected {
+  background-image: url("./assets/color_option2.png");
+}
+
 /* .ansBtn.selected::after {
   content: '';
   position: absolute;
