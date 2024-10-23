@@ -124,7 +124,7 @@ button.btn:disabled {
   width: 100%;
   height: 88px;
   background-image: url(/src/assets/option_blank.png);
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   color: #662d91;
   border: none;
@@ -135,6 +135,29 @@ button.btn:disabled {
   background-repeat: no-repeat;
   padding: 8px 27px;
   line-height: 16px;
+}
+.ansBtn2 {
+  width: 100%;
+  height: 100px;
+  background-image: url(/src/assets/option_blank2.png);
+  background-size: contain;
+  background-position: center;
+  color: #662d91;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  position: relative;
+  background-repeat: no-repeat;
+  padding: 8px 27px;
+  line-height: 16px;
+}
+
+  .ansBtn2 span {
+    font-size: 14px;
+    position: relative;
+    top: -2px;
+
 }
 /* .ansBtn:hover:not(:disabled) {
     opacity: 0.8;
@@ -255,8 +278,8 @@ button.btn:disabled {
   text-align: left;
 }
 .okBtn {
-  width: 215px;
-  height: 82px;
+  width: 182px;
+  height: 69px;
   background-image:url("./assets/nextBtn.png");
   overflow: hidden;
   text-indent: -9999px;

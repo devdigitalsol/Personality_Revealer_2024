@@ -88,7 +88,7 @@ const QuestionList = () => {
             </div>
           </div>
           {questions.length > 0 && !gameOver && (
-            <div className="text-center font-extrabold text-[#38013a] text-xl px-4 leading-6">
+            <div className="text-center font-bold text-[#6400A0] text-2xl px-4 py-8  leading-6">
               {questions[currentQuestion].question}
             </div>
           )}
