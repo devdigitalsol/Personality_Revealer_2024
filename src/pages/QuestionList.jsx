@@ -46,7 +46,6 @@ const QuestionList = () => {
       finalPersonality =
         topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
-    console.log(finalPersonality);
     setAns(finalPersonality);
 
     navigate("/poster");

@@ -14,8 +14,6 @@ const Poster = () => {
   const navigate = useNavigate();
   const { user, ans } = useContext(AppContext);
 
-  console.log(ans, "ans");
-
   // const downLoadPoster = () => {
   //   setLoading(true);
   //   window.scrollTo(0, 0);
