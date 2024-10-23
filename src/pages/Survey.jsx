@@ -49,7 +49,7 @@ const Survey = () => {
                 <button
                   key={index}
                   onClick={() => handleOptionSelect(index)}
-                  className={`ansBtn ${
+                  className={`ansBtn2 ${
                     selectedOptions.includes(index) ? "selected" : ""
                   }`}
                   data-personality={option.personality}
