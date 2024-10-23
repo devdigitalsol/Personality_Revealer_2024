@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Options = ({
   options,
@@ -6,7 +6,7 @@ const Options = ({
   setIsSelected,
   setNextQuestion,
   setConfidence,
-  setReliability,
+  setVersatility,
   setConsistency,
 }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
@@ -26,8 +26,8 @@ const Options = ({
       case "Confidence":
         setConfidence((prev) => prev + 1);
         break;
-      case "Reliability":
-        setReliability((prev) => prev + 1);
+      case "Versatility":
+        setVersatility((prev) => prev + 1);
         break;
       case "Consistency":
         setConsistency((prev) => prev + 1);
@@ -44,7 +44,9 @@ const Options = ({
           key={index}
           onClick={(e) => handleClick(e, index)}
           disabled={isSelected}
-          className={`ansBtn ${selectedOptionIndex === index ? "selected" : ""}`}
+          className={`ansBtn ${
+            selectedOptionIndex === index ? "selected" : ""
+          }`}
           data-personality={option.personality}
         >
           <span className="px-4">{option.data}</span>

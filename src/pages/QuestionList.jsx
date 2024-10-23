@@ -46,8 +46,8 @@ const QuestionList = () => {
       finalPersonality =
         topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
-
     setAns(finalPersonality);
+
     navigate("/poster");
   }, [confidence, versatility, consistency, navigate, setAns]);
 

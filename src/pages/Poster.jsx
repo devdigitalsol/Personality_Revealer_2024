@@ -3,8 +3,8 @@ import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import CONFIDENT from "./../assets/img1.png";
-import RELIABLE from "./../assets/img2.png";
-import CONSISTENCY from "./../assets/img3.png";
+import CONSISTENCY from "./../assets/img2.png";
+import VERSATILITY from "./../assets/img3.png";
 import html2canvas from "html2canvas";
 import Loader from "../components/Loader";
 import circle from "../assets/circle2.png";
@@ -121,23 +121,7 @@ const Poster = () => {
               <h4>DR. {user?.drName}</h4>
             </>
           )}
-          {ans === "reliability" && (
-            <>
-              <img src={RELIABLE} alt="" />
-              <div className="img_sec">
-                {" "}
-                <img src={circle} alt="" className="circle" />{" "}
-                {user?.photo && (
-                  <img
-                    src={user.photo}
-                    alt="userphoto"
-                    className="user_photo"
-                  />
-                )}{" "}
-              </div>{" "}
-              <h4>DR. {user?.drName}</h4>
-            </>
-          )}
+
           {ans === "consistency" && (
             <>
               <img src={CONSISTENCY} alt="" />
@@ -152,6 +136,24 @@ const Poster = () => {
                   />
                 )}{" "}
               </div>
+              <h4>DR. {user?.drName}</h4>
+            </>
+          )}
+
+          {ans === "versatility" && (
+            <>
+              <img src={VERSATILITY} alt="" />
+              <div className="img_sec">
+                {" "}
+                <img src={circle} alt="" className="circle" />{" "}
+                {user?.photo && (
+                  <img
+                    src={user.photo}
+                    alt="userphoto"
+                    className="user_photo"
+                  />
+                )}{" "}
+              </div>{" "}
               <h4>DR. {user?.drName}</h4>
             </>
           )}
