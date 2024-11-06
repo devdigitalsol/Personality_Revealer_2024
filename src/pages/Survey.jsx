@@ -31,15 +31,15 @@ const Survey = () => {
   };
 
   return (
-    <div className="screenHeight w-full flex-col bg-[#ffe9ff] border-[2px]">
+    <div className="screenHeight w-full flex-col bg-[#662d91] border-[2px]">
       <Header />
-      <div className="px-6 relative w-full mainBox2">
+      <div className="px-2 relative w-full mainBox2">
         <div
           className=" flex flex-col gap-6 pt-6 items-center justify-center"
           style={{ height: "90%", paddingBottom: "30px" }}
         >
           {questions.length > 0 && !gameOver && (
-            <div className="text-center font-extrabold text-[#38013a] text-xl px-4 leading-6">
+            <div className="text-center font-medium text-[#662d91] text-xl px-4 leading-6">
               {questions[currentQuestion].question}
             </div>
           )}
@@ -58,13 +58,13 @@ const Survey = () => {
                     !selectedOptions.includes(index)
                   }
                 >
-                  <span className="px-4">
-                    <span className="font-bold text-[#000000]">
+                  <span className="">
+                    <span className="font-bold text-[#000000] block pb-0.5 leading-4">
                       {option.topic}
                     </span>
-                    <br />
+                   
                     <span
-                      className="text-[#000000] leading-3 "
+                      className="text-[#000000] leading-4"
                       dangerouslySetInnerHTML={{ __html: option.data }}
                     ></span>
                     <br />
@@ -86,8 +86,8 @@ const Survey = () => {
           ENTER
         </button>
       </div>
-      <div className=" flex py-[2rem]  text-[4px] text-white px-0 w-full bg-[#642d90]">
-        <div className="flex flex-col w-[45%] items-start p-2  ">
+      <div className=" flex py-[2rem]  text-[7px] text-white px-0 w-full bg-[#642d90]">
+        <div className="flex flex-col w-[45%] items-start p-1 text-left">
           <p>Omnipaque is a trademark of GE HealthCare</p>
           <p>
             GE is a trademark of General Electric Company used under trademark
@@ -96,7 +96,7 @@ const Survey = () => {
           <p>@2024 GE HealthCare</p>
           <p>JB00405BS/11/2024</p>
         </div>
-        <div className="flex flex-col w-[55%] items-end p-2">
+        <div className="flex flex-col w-[55%] items-end p-1">
           <p className="text-[8px]">Wipro GE HealthCare Private Limited</p>
           <p>22nd Floor,Block A, Building 5, DLF Epitome</p>
           <p>Gurugram-122002, Haryana</p>

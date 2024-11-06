@@ -75,7 +75,7 @@ const QuestionList = () => {
   return (
     <div className="screenHeight w-full bg-[#ffe9ff] border-[2px]">
       <Header />
-      <div className="px-6 relative w-full mainBox2 mt-10 ">
+      <div className="px-4 relative w-full mainBox2 mt-10 ">
         <div
           className="borderCustom flex flex-col gap-6 pt-12 items-center justify-center"
           style={{ height: "90%" }}

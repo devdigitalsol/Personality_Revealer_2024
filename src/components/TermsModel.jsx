@@ -13,7 +13,7 @@ const TermsModel = ({ showTerms, setShowTerms }) => {
         <div className="bg-gray-900/75 fixed top-0 left-0 w-full h-full flex items-center justify-center z-10">
           <div className="relative z-10 w-4/5">
             <div className="bg-white shadow rounded p-4 text-center flex items-center justify-center flex-col gap-3 font-semibold">
-              <p>
+              <p className="text-[15px]">
                 I have opted to use the{" "}
                 <span className="uppercase">
                   one in a billion personality revealer
@@ -25,6 +25,7 @@ const TermsModel = ({ showTerms, setShowTerms }) => {
                 </span>{" "}
                 activity.
                 <br />
+                <br />
                 <span>
                   I state that the picture and personal details shared by me are
                   true and accurate and the company shall not have any liability
@@ -35,8 +36,8 @@ const TermsModel = ({ showTerms, setShowTerms }) => {
                 </span>
               </p>
 
-              <div className="flex gap-3 mt-[-8px] mb-6 checkboxContainer ">
-                <label htmlFor="termCheckBox" className="customCheckbox ">
+              <div className="flex gap-3 mt-[8px] mb-4 checkboxContainer ">
+                {/* <label htmlFor="termCheckBox" className="customCheckbox ">
                   <input
                     type="checkbox"
                     id="termCheckBox"
@@ -44,8 +45,8 @@ const TermsModel = ({ showTerms, setShowTerms }) => {
                     onChange={() => setTerm(!term)}
                   />
                   <i></i>
-                </label>
-                <p className="leading-4 text-[14px]">
+                </label> */}
+                <p className="leading-4 text-[13px]">
                   I understand and hereby agree to GE HealthCare privacy policy.{" "}
                 </p>
               </div>
