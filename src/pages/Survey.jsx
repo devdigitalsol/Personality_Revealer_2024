@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import shuffle from "../components/Shuffle";
 import questionsData from "./../data/featureData";
+import DRLLOGO from "./../assets/Bottom_Logo.png";
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -12,8 +13,7 @@ const Survey = () => {
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    const shuffledQuestions = shuffle(questionsData);
-    setQuestions(shuffledQuestions);
+    setQuestions(questionsData);
   }, []);
 
   const handleOptionSelect = (index) => {
@@ -26,17 +26,17 @@ const Survey = () => {
 
   const handleClick = () => {
     if (selectedOptions.length === 3) {
-      navigate("/description");
+      navigate("/logo");
     }
   };
 
   return (
-    <div className="screenHeight w-full bg-[#ffe9ff] border-[2px]">
+    <div className="screenHeight w-full flex-col bg-[#ffe9ff] border-[2px]">
       <Header />
       <div className="px-6 relative w-full mainBox2">
         <div
-          className="borderCustom flex flex-col gap-6 pt-6 items-center justify-center"
-          style={{ height: "90%" }}
+          className=" flex flex-col gap-6 pt-6 items-center justify-center"
+          style={{ height: "90%", paddingBottom: "30px" }}
         >
           {questions.length > 0 && !gameOver && (
             <div className="text-center font-extrabold text-[#38013a] text-xl px-4 leading-6">
@@ -44,7 +44,7 @@ const Survey = () => {
             </div>
           )}
           {questions.length > 0 && (
-            <div className="flex flex-col items-center gap-4 px-0">
+            <div className="flex flex-col items-center  px-0">
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
@@ -58,12 +58,24 @@ const Survey = () => {
                     !selectedOptions.includes(index)
                   }
                 >
-                  <span className="px-4">{option.data}</span>
+                  <span className="px-4">
+                    <span className="font-bold text-[#000000]">
+                      {option.topic}
+                    </span>
+                    <br />
+                    <span
+                      className="text-[#000000] leading-3 "
+                      dangerouslySetInnerHTML={{ __html: option.data }}
+                    ></span>
+                    <br />
+                  </span>
                 </button>
               ))}
             </div>
           )}
+          {/* <div className="text-[8px]">1. Data on File, GE HealthCare</div> */}
         </div>
+
         <button
           onClick={handleClick}
           className={`goBtn ${
@@ -73,6 +85,22 @@ const Survey = () => {
         >
           ENTER
         </button>
+      </div>
+      <div className=" flex py-[2rem]  text-[4px] text-white px-0 w-full bg-[#642d90]">
+        <div className="flex flex-col w-[45%] items-start p-2  ">
+          <p>Omnipaque is a trademark of GE HealthCare</p>
+          <p>
+            GE is a trademark of General Electric Company used under trademark
+            license.
+          </p>
+          <p>@2024 GE HealthCare</p>
+          <p>JB00405BS/11/2024</p>
+        </div>
+        <div className="flex flex-col w-[55%] items-end p-2">
+          <p className="text-[8px]">Wipro GE HealthCare Private Limited</p>
+          <p>22nd Floor,Block A, Building 5, DLF Epitome</p>
+          <p>Gurugram-122002, Haryana</p>
+        </div>
       </div>
     </div>
   );

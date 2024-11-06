@@ -24,6 +24,9 @@ html,body{
 .form-control {
   @apply focus:outline-none appearance-none w-full leading-6 text-slate-900 placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2  shadow-sm;
 }
+/* .select{
+  @apply 
+} */
 
 .btn {
   @apply bg-[#662d91] text-white shadow text-sm leading-6 font-medium py-2 px-4 rounded-lg;
@@ -43,12 +46,12 @@ button.btn:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffe9ff;
+  background-color: white;
 }
 
 .borderCustom {
   /* border: 7px #f55bff; */
-  border: 7px #f55bff;
+  border: 4px #f55bff;
   /* #662d91 */
   border-style: ridge;
   border-radius: 0.5rem;
@@ -150,11 +153,11 @@ button.btn:disabled {
   position: relative;
   background-repeat: no-repeat;
   padding: 8px 27px;
-  line-height: 16px;
+  line-height: 10px;
 }
 
   .ansBtn2 span {
-    font-size: 14px;
+    font-size: 12px;
     position: relative;
     top: -2px;
 
@@ -225,19 +228,19 @@ button.btn:disabled {
   position: relative;
 }
 
-.mainBox2 h4 {
+.mainBox2 h5 {
   position: absolute;
   font-weight: 900;
   color: #6400A0;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Poppins", sans-serif;
   font-weight: 900;
   font-style: normal;
-  margin-bottom: 20px;
+  margin-top:67px;
 }
 .img_sec {
   position: absolute;
-  top: 26%;
+  top: 30%;
   width: 140px;
   height: 140px;
 
@@ -266,7 +269,7 @@ button.btn:disabled {
 }
 
 .des_content {
-  width: 100%;
+    width: 100%;
     float: left;
     background: #fff;
     padding: 30px 20px 70px 20px;
@@ -282,7 +285,7 @@ button.btn:disabled {
   text-align: left;
 }
 .okBtn {
-  width: 182px;
+  width: 188px;
   height: 69px;
   background-image:url("./assets/nextBtn.png");
   overflow: hidden;
