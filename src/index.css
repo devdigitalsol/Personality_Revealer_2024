@@ -99,7 +99,7 @@ button.btn:disabled {
   overflow: hidden;
   text-indent: -9999px;
   position: absolute;
-  bottom: -30px;
+  bottom: -50px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -172,6 +172,44 @@ button.btn:disabled {
 
 .ansBtn2.selected {
   background-image: url("./assets/color_option2.png");
+}
+
+.pop_sec_top {
+  position: relative;
+  bottom: 10px;
+  right: 20px;
+}
+
+.pop_sec_top span img {
+  width: 32px;
+}
+
+.main_popup {
+  overflow-x: auto;
+    top: 0;
+    z-index: 99999;
+}
+
+.pop_content {
+  list-style: decimal;
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+.pop_content h4 {
+  color: #662d91;
+  -webkit-text-decoration: dashed;
+  text-decoration: dashed;
+  font-size: 22px;
+  font-weight: 700;
+  width: auto;
+  display: block;
+  padding-bottom: 10px;
+  text-align: left;
+}
+.pop_content li {
+  text-align: left;
+  padding-bottom: 7px;
+  font-size: 13px;
 }
 
 /* .ansBtn.selected::after {
