@@ -5,6 +5,7 @@ import shuffle from "../components/Shuffle";
 import questionsData from "./../data/featureData";
 import DRLLOGO from "./../assets/Bottom_Logo.png";
 import Reference from "../components/Reference";
+import ICON from "./../assets/book.png";
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -90,8 +91,11 @@ const Survey = () => {
           </button>
         </div>
 
-        <div className="flex justify-end  cursor-pointer text-sm text-red absolute bg-red-400  w-full">
-          <span onClick={() => setShowPopup(true)}>📄 References</span>
+        <div className="flex justify-end  cursor-pointer text-sm text-red  w-full pop_sec_top">
+          <span onClick={() => setShowPopup(true)}>
+            {" "}
+            <img src={ICON} alt="logo" />
+          </span>
         </div>
 
         <div className=" flex py-[2rem]  text-[4px] text-white px-0 w-full bg-[#642d90]">
