@@ -47,7 +47,7 @@ const Home = () => {
     <>
       <div className="screenHeight w-full bg-[#ffe9ff] border-[2px]">
         <Header />
-        <div className="px-6 relative  w-full mainBox">
+        <div className="px-4 relative  w-full mainBox">
           <form
             onSubmit={handleSubmit}
             className=" flex flex-col gap-6 py-6 justify-around"
@@ -55,7 +55,7 @@ const Home = () => {
             <div className="w-full flex  items-center justify-center">
               <img src={LOGO} alt="logo" />
             </div>
-            <div className="px-6 flex flex-col gap-6">
+            <div className="flex flex-col gap-6">
               <div className="bg-white p-4 rounded">
                 <div className="form-group">
                   {/* <input
@@ -122,7 +122,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex gap-3 mt-[-8px] mb-6 checkboxContainer">
+              <div className="flex px-4 gap-3 mt-[-8px] mb-6 checkboxContainer">
                 <label htmlFor="termCheckBox" className="customCheckbox ">
                   <input
                     type="checkbox"
