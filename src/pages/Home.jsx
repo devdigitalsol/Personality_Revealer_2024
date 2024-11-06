@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import LOGO from "./../assets/Top_Logo.png";
+import LOGO from "./../assets/logo2.png";
 import PicModal from "./../components/PicModal";
 import Header from "./../components/Header";
 import { AppContext } from "../context/AppContext";
