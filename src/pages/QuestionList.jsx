@@ -2,7 +2,6 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Options from "../components/Options";
-import shuffle from "../components/Shuffle";
 import { AppContext } from "../context/AppContext";
 import questionsData from "./../data/data";
 
@@ -27,9 +26,8 @@ const QuestionList = () => {
   }, [navigate, user?.drName]);
 
   useEffect(() => {
-    const shuffledQuestions = shuffle(questionsData);
-    setQuestions(shuffledQuestions);
-    setTotalQuestions(shuffledQuestions.length);
+    setQuestions(questionsData);
+    setTotalQuestions(questionsData.length);
   }, []);
 
   const checkResult = useCallback(() => {

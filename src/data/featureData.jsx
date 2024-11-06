@@ -2,31 +2,31 @@ const questions = [
   {
     id: 1,
     question:
-      "Kindly choose the top three statements that closely resembles your choice of using OMNIPAQUE scan after scan in your practice ",
+      "Choose 3 statements that closely resembles your choice of using OMNIPAQUE scan after scan in your practice ",
     options: [
       {
         topic: "EXPERIENCE - PUBLICATION AFTER PUBLICATION",
-        data: "Distinguished by a breadth of clinical data, Omnipaque is the first contrast medium to be subject to blinded studies on a large, systematic scale.",
-      },
-      {
-        topic: "CAPACITY - ORDER AFTER ORDER",
-        data: "Omnipaque has been used in more than a billion procedures and delivered to our customers in more than 120 countries.",
-      },
-      {
-        topic: "PRODUCTIVITY - PROCEDURE AFTER PROCEDURE ",
-        data: "We have been producing & delivering contrast media for over 40 years. Four patient procedures a second are carried out using our imaging agents. ",
-      },
-      {
-        topic: " QUALITY - IMAGE AFTER IMAGE",
-        data: "Head-to-head trials across a range of indications have shown that Omnipaque has not been surpassed by any other LOCM for its diagnostic efficacy.",
-      },
-      {
-        topic: " EFFICIENCY - SCAN AFTER SCAN",
-        data: "Building efficiency & saving costs with Omnipaque 500 ml multi-dose vials. Pluspak packaging enabling ease of administration of contrast.",
+        data: "Development of Iohexol set the gold standard for non-ionic imaging; Omnipaque is the first contrast medium to be subject to blinded studies on a large, systematic scale<sup>1,2</sup> ",
       },
       {
         topic: "EDUCATION & SUPPORT - SOLUTION AFTER SOLUTION",
-        data: "Omnipaque GEHC team provide expert advisors, application specialists & a host of educational programs for me and my department.",
+        data: "GE HealthCare’s expert team of advisors & application specialists host educational sessions for our departments<sup>15,16</sup> ",
+      },
+      {
+        topic: "LEGACY - CASE AFTER CASE",
+        data: "Distinguished by a breadth of clinical data, a Billion doses of Omnipaque is a testament to the trust clinicians have in us to deliver for over a 40 years<sup>17</sup>",
+      },
+      {
+        topic: " QUALITY - IMAGE AFTER IMAGE",
+        data: "From Extraction of Iodine, API production to Injection, GE Healthcare secures quality production & supply of Iodinated contrast medium<sup>18,19</sup> ",
+      },
+      {
+        topic: " EFFICIENCY - SCAN AFTER SCAN",
+        data: "Tailored efficiency solutions & saving cost with the convenience of 500 ml multi-dose vials. Pluspak packaging supports department productivity<sup>20-25</sup>  ",
+      },
+      {
+        topic: " EFFICACY - DOSE AFTER DOSE",
+        data: "Head-to-head clinical studies across a range of indications have shown that Omnipaque has not been surpassed by any other LOCM for its diagnostic efficacy <sup>3-14</sup> ",
       },
     ],
   },

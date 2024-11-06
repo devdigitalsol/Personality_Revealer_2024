@@ -58,22 +58,38 @@ const Home = () => {
             <div className="px-6 flex flex-col gap-6">
               <div className="bg-white p-4 rounded">
                 <div className="form-group">
-                  <input
+                  {/* <input
                     type="text"
-                    placeholder="GEHC"
+                    placeholder="GEHC EMPLOYEE NAME"
                     className="form-control border-0 text-center uppercase"
                     id="gehc"
                     value={formData.gehc}
                     onChange={(e) =>
                       setFormData({ ...formData, gehc: e.target.value })
                     }
-                  />
+                  /> */}
+                  <select
+                    type="text"
+                    id="gehc"
+                    className="focus:outline-none  w-full leading-6 text-[#662d91] placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2 text-center  shadow-sm;"
+                    value={formData.gehc}
+                    onChange={(e) =>
+                      setFormData({ ...formData, gehc: e.target.value })
+                    }
+                  >
+                    <option disabled="" value="">
+                      GEHC EMPLOYEE NAME
+                    </option>
+                    <option value="Emp1">Emp1</option>
+                    <option value="Emp2">Emp2</option>
+                    <option value="Emp3">Emp3</option>
+                  </select>
                 </div>
 
                 <div className="form-group  ">
                   <input
                     type="text"
-                    placeholder="DOCTOR'S NAME"
+                    placeholder="PARTICIPANT NAME"
                     className="form-control text-center uppercase"
                     id="drName"
                     value={formData.drName}
@@ -86,7 +102,7 @@ const Home = () => {
                 <div className="form-group pb-4 ">
                   <input
                     type="text"
-                    placeholder="LOCATION"
+                    placeholder="INSTITUTE NAME"
                     className="form-control text-center uppercase"
                     id="location"
                     value={formData.location}
@@ -120,7 +136,7 @@ const Home = () => {
                   I have read and agree to{" "}
                   <span
                     onClick={openTerms}
-                    className="underline text-[#662d91]"
+                    className=" font-bold text-[#662d91]"
                   >
                     terms & conditions
                   </span>

@@ -1,7 +1,7 @@
 const questions = [
   {
     id: 1,
-    question: "What’s your approach to handling unexpected changes in plans?",
+    question: "How do you approach uncertain situations or changes in plans?",
     options: [
       {
         data: "I remain calm, assess the situation, and quickly take charge of the new direction",
@@ -55,14 +55,14 @@ const questions = [
   },
   {
     id: 4,
-    question: "When a colleague needs help with a difficult diagnosis, you :",
+    question: "When a colleague needs help with a difficult situation:",
     options: [
       {
         data: "I offer my insights and provide a clear path forward.",
         personality: "Confidence",
       },
       {
-        data: "I follow standard procedures and collaborate to ensure the diagnosis is accurate.",
+        data: "I follow standard procedures and collaborate to ensure the solution is accurate.",
         personality: "Consistency",
       },
       {
@@ -73,15 +73,14 @@ const questions = [
   },
   {
     id: 5,
-    question:
-      "How do you handle disagreements with a colleague over a diagnosis?",
+    question: "How do you handle disagreements with a colleague over an issue?",
     options: [
       {
         data: "I confidently present my rationale and engage in a constructive discussion.",
         personality: "Confidence",
       },
       {
-        data: " I rely on clinical guidelines and evidence-based practices to back up my opinion.",
+        data: " I rely on evidence-based practices to support my opinion.",
         personality: "Consistency",
       },
       {
@@ -92,10 +91,10 @@ const questions = [
   },
   {
     id: 6,
-    question: "How do you approach patient communication in radiology?",
+    question: "What is your preferred way to communicate with others at work?",
     options: [
       {
-        data: "I communicate clearly and confidently, ensuring the patient understands the process.",
+        data: "I communicate clearly and confidently, ensuring people understand the processes.",
         personality: "Confidence",
       },
       {
@@ -103,7 +102,7 @@ const questions = [
         personality: "Consistency",
       },
       {
-        data: ": I tailor my communication style to each patient’s needs, ensuring they feel comfortable.",
+        data: " I tailor my communication style to people's needs, ensuring they feel comfortable.",
         personality: "Versatility",
       },
     ],
@@ -113,15 +112,15 @@ const questions = [
     question: "In a high-pressure situation, you typically:",
     options: [
       {
-        data: "I remain composed and lead the team through the challenge.",
+        data: "Remain composed and lead the team through the challenge.",
         personality: "Confidence",
       },
       {
-        data: "I stick to proven methods to handle the pressure effectively. ",
+        data: "Stick to proven methods to handle the pressure effectively. ",
         personality: "Consistency",
       },
       {
-        data: "I adapt quickly, using different strategies depending on the situation’s demands",
+        data: "Adapt quickly, using different strategies depending on the situation’s demands",
         personality: "Versatility",
       },
     ],

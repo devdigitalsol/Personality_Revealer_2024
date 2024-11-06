@@ -118,7 +118,7 @@ const Poster = () => {
                   />
                 )}{" "}
               </div>
-              <h4>DR. {user?.drName}</h4>
+              <h5> {user?.drName}</h5>
             </>
           )}
 
@@ -136,7 +136,7 @@ const Poster = () => {
                   />
                 )}{" "}
               </div>
-              <h4>DR. {user?.drName}</h4>
+              <h5>{user?.drName}</h5>
             </>
           )}
 
@@ -154,70 +154,10 @@ const Poster = () => {
                   />
                 )}{" "}
               </div>{" "}
-              <h4>DR. {user?.drName}</h4>
+              <h5> {user?.drName}</h5>
             </>
           )}
         </div>
-
-        {/* <Header />
-        <div className="px-6 relative w-full mainBox2">
-          <div
-            className="borderCustom flex flex-col gap-6 justify-around p-4 !pb-4 !rounded-none"
-            id="templateView"
-          >
-            <div className="bg-white p-4 flex flex-col items-center gap-4 shadow-2xl">
-              <div className="flex flex-col items-center">
-                <div className="w-44 h-44 rounded-full overflow-hidden border-[#662d91] border-2 flex items-center justify-center mb-2">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-[#662d91] border-4">
-                    {user?.photo && <img src={user.photo} alt="userphoto" />}
-                  </div>
-                </div>
-                <div className="uppercase text-[#662d91] text-[24px] font-extrabold">
-                  DR. {user?.drName}
-                </div>
-              </div>
-              {ans === "confidence" && (
-                <div className="w-full text-center">
-                  <div className="flex items-center w-full justify-center  mt-[-10px] ">
-                    <img src={CONFIDENT} alt="poster" />
-                  </div>
-                  <p className="leading-5 mt-1">
-                       Your assertive approach and sharp
-                       decision-making shine through, 
-                       guiding teams with clarity and 
-                       elevating patient outcomes.
-                  </p>
-                </div>
-              )}
-              {ans === "reliability" && (
-                <div className="w-full text-center">
-                  <div className="flex items-center w-full justify-center mt-[-10px]">
-                    <img src={RELIABLE} alt="poster" />
-                  </div>
-                  <p className="leading-5 mt-1">
-                       Your unwavering consistency ensures
-                       that no image goes unread and
-                       no detail is overlooked, forming 
-                       the backbone of patient care.
-                  </p>
-                </div>
-              )}
-              {ans === "consistency" && (
-                <div className="w-full text-center">
-                  <div className="flex items-center w-full justify-center mt-[-10px] ">
-                    <img src={EXPERT} alt="poster" />
-                  </div>
-                  <p className="leading-5 mt-1">
-                      Your unwavering precision and 
-                      methodical approach ensure
-                      consistent, reliable results
-                      every time.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div> */}
       </div>
       <div className="fixed bg-black/40 w-full left-0 right-0 bottom-0 p-4 text-center flex gap-3 items-start justify-center">
         <button type="button" onClick={backBtn} className="backBtn">
