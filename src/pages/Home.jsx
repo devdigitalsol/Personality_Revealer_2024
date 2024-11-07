@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import TermsModel from "../components/TermsModel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { employees } from "../data/geEmployeeName";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -80,9 +81,13 @@ const Home = () => {
                     <option disabled="" value="">
                       GEHC EMPLOYEE NAME
                     </option>
-                    <option value="Emp1">Emp1</option>
-                    <option value="Emp2">Emp2</option>
-                    <option value="Emp3">Emp3</option>
+                    {employees.map((employee) => {
+                      return (
+                        <option key={employee.id} value={employee.id}>
+                          {employee.name}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
