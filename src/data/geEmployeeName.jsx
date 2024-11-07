@@ -75,4 +75,10 @@ export const employees = [
   { id: "Tito Prabhakaran P", name: "Tito Prabhakaran P" },
   { id: "Sengupta Soudeep", name: "Sengupta Soudeep" },
   { id: "Parlikar, Kalpesh", name: "Parlikar, Kalpesh" },
+  { id: "Amit Mehta", name: "Amit Mehta" },
+  { id: "Amit Tembhre", name: "Amit Tembhre" },
+  { id: "Bilesh Raj", name: "Bilesh Raj" },
+  { id: "Vijay Bam", name: "Vijay Bam" },
+  { id: "Rohini Pandey", name: "Rohini Pandey" },
+  { id: "Jasmeet Sahni", name: "Jasmeet Sahni" },
 ];
