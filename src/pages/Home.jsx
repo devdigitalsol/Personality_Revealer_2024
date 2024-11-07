@@ -22,6 +22,8 @@ const Home = () => {
     drName: "",
     photo: "",
     location: "",
+    designation: "",
+    city: "",
     termCheckBox: "",
   });
 
@@ -29,19 +31,63 @@ const Home = () => {
     setShowTerms(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { gehc, drName, photo, location } = formData;
-    if (!gehc.trim() || !drName.trim() || !location.trim()) {
+    const { gehc, drName, photo, location, designation, city } = formData;
+    if (
+      !gehc.trim() ||
+      !drName.trim() ||
+      !location.trim() ||
+      !designation.trim() ||
+      !city.trim()
+    ) {
       return toast.error("Please fill all the fields");
     }
     if (!photo) {
       return toast.error("Please select doctor's photo");
     }
 
-    setUser(formData);
-    toast.success("Form submitted successfully");
-    navigate("/survey");
+    const requestBody = {
+      account: "Personality_Revealer",
+      project_id: "GE_HealthCare",
+      collection: "user_data_new",
+      record: {
+        gehc_employee_name: gehc,
+        particiapant_name: drName,
+        institute_name: location,
+        Designation: designation,
+        city: city,
+        image: "",
+        personality: "",
+        selected_feature1: "",
+        selected_feature2: "",
+        selected_feature3: "",
+        certificate: "",
+      },
+    };
+
+    try {
+      const response = await fetch("https://backend.solmc.in/records", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+      if (response.ok) {
+        const result = await response.json();
+        setUser(formData);
+        console.log(response);
+        toast.success("Form submitted successfully");
+        navigate("/survey");
+      } else {
+        toast.error("Failed to submit form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -59,20 +105,20 @@ const Home = () => {
             <div className="flex flex-col gap-6">
               <div className="bg-white p-4 rounded">
                 <div className="form-group">
-                  {/* <input
+                  <input
                     type="text"
                     placeholder="GEHC EMPLOYEE NAME"
-                    className="form-control border-0 text-center uppercase"
+                    className="form-control text-center uppercase"
                     id="gehc"
                     value={formData.gehc}
                     onChange={(e) =>
                       setFormData({ ...formData, gehc: e.target.value })
                     }
-                  /> */}
-                  <select
+                  />
+                  {/* <select
                     type="text"
                     id="gehc"
-                    className="focus:outline-none  w-full leading-6 text-[#662d91] placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2 text-center  shadow-sm;"
+                    className="focus:outline-none uppercase  w-full leading-6 text-[#662d91] placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2 text-center  shadow-sm;"
                     value={formData.gehc}
                     onChange={(e) =>
                       setFormData({ ...formData, gehc: e.target.value })
@@ -88,7 +134,7 @@ const Home = () => {
                         </option>
                       );
                     })}
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className="form-group  ">
@@ -104,7 +150,7 @@ const Home = () => {
                   />
                 </div>
 
-                <div className="form-group pb-4 ">
+                <div className="form-group  ">
                   <input
                     type="text"
                     placeholder="INSTITUTE NAME"
@@ -113,6 +159,32 @@ const Home = () => {
                     value={formData.location}
                     onChange={(e) =>
                       setFormData({ ...formData, location: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="form-group ">
+                  <input
+                    type="text"
+                    placeholder="DESIGNATION"
+                    className="form-control text-center uppercase"
+                    id="designation"
+                    value={formData.designation}
+                    onChange={(e) =>
+                      setFormData({ ...formData, designation: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="form-group pb-4 ">
+                  <input
+                    type="text"
+                    placeholder="CITY"
+                    className="form-control text-center uppercase"
+                    id="city"
+                    value={formData.city}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
                     }
                   />
                 </div>
