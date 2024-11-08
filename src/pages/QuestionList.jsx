@@ -15,12 +15,14 @@ const QuestionList = () => {
   const [nextQuestion, setNextQuestion] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
 
   const [confidence, setConfidence] = useState(0);
   const [versatility, setVersatility] = useState(0);
   const [consistency, setConsistency] = useState(0);
 
   useEffect(() => {
+    2;
     if (!user?.drName) {
       navigate("/");
     }
@@ -51,6 +53,7 @@ const QuestionList = () => {
   }, [confidence, versatility, consistency, navigate, setAns]);
 
   const gotoNext = useCallback(() => {
+    setSelectedOptionIndex(-1);
     const nextqt = currentQuestion + 1;
     if (nextqt < questions.length) {
       setCurrentQuestion(nextqt);
@@ -60,7 +63,9 @@ const QuestionList = () => {
       setGameOver(true);
       checkResult();
     }
+    console.log("1");
     document.querySelectorAll(".selected").forEach((btn) => {
+      console.log("Hyy");
       btn.classList.remove("selected");
     });
   }, [checkResult, currentQuestion, questions.length]);
@@ -104,6 +109,8 @@ const QuestionList = () => {
               selectedOptions={selectedOptions}
               setSelectedOptions={setSelectedOptions}
               questionIndex={currentQuestion}
+              selectedOptionIndex={selectedOptionIndex}
+              setSelectedOptionIndex={setSelectedOptionIndex}
             />
           )}
         </div>
