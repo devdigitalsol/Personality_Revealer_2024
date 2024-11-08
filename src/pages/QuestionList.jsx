@@ -14,6 +14,7 @@ const QuestionList = () => {
   const [gameOver, setGameOver] = useState(false);
   const [nextQuestion, setNextQuestion] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const [confidence, setConfidence] = useState(0);
   const [versatility, setVersatility] = useState(0);
@@ -100,6 +101,9 @@ const QuestionList = () => {
               setConfidence={setConfidence}
               setVersatility={setVersatility}
               setConsistency={setConsistency}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              questionIndex={currentQuestion}
             />
           )}
         </div>

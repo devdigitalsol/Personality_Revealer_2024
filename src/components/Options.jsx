@@ -2,12 +2,12 @@ import { useState } from "react";
 
 const Options = ({
   options,
-  isSelected,
-  setIsSelected,
-  setNextQuestion,
   setConfidence,
   setVersatility,
   setConsistency,
+  setNextQuestion,
+  setIsSelected,
+  isSelected,
 }) => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
 

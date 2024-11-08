@@ -55,7 +55,7 @@ const questions = [
   },
   {
     id: 4,
-    question: "When a colleague needs help with a difficult situation:",
+    question: "When a colleague needs help with a difficult situation",
     options: [
       {
         data: "I offer my insights and provide a clear path forward.",
