@@ -37,7 +37,7 @@ const questions = [
   },
   {
     id: 3,
-    question: "What’s your approach to learning new imaging technologies?",
+    question: "What’s your approach to learning new technologies?",
     options: [
       {
         data: "I dive in with confidence, mastering the new technology quickly.",
