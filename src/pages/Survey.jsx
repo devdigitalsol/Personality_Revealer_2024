@@ -39,6 +39,7 @@ const Survey = () => {
   };
 
   const handleClick = () => {
+    console.log(lastId, "lastID");
     if (selectedOptions.length === 3) {
       const payload = {
         account: "Personality_Revealer",
