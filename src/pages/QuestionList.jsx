@@ -22,7 +22,6 @@ const QuestionList = () => {
   const [consistency, setConsistency] = useState(0);
 
   useEffect(() => {
-    2;
     if (!user?.drName) {
       navigate("/");
     }
@@ -63,9 +62,7 @@ const QuestionList = () => {
       setGameOver(true);
       checkResult();
     }
-    console.log("1");
     document.querySelectorAll(".selected").forEach((btn) => {
-      console.log("Hyy");
       btn.classList.remove("selected");
     });
   }, [checkResult, currentQuestion, questions.length]);

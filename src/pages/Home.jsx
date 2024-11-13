@@ -12,7 +12,7 @@ import { employees } from "../data/geEmployeeName";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AppContext);
+  const { setUser, setLastId } = useContext(AppContext);
   const [showTerms, setShowTerms] = useState(false);
   const [term, setTerm] = useState(false);
   const [show, setShow] = useState(false);
@@ -31,6 +31,52 @@ const Home = () => {
     setShowTerms(true);
   };
 
+  const uploadFile = async (base64String) => {
+    const base64ToBlob = (base64) => {
+      const byteString = atob(base64.split(",")[1]);
+      const mimeType = base64.split(",")[0].match(/:(.*?);/)[1];
+
+      const byteNumbers = new Array(byteString.length);
+      for (let i = 0; i < byteString.length; i++) {
+        byteNumbers[i] = byteString.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+
+      return new Blob([byteArray], { type: mimeType });
+    };
+
+    const fileBlob = base64ToBlob(base64String);
+    const formData = new FormData();
+    formData.append("account", "Personality_Revealer");
+    formData.append("collection", "user_data_new");
+    formData.append("project_id", "GE_HealthCare");
+    formData.append("upload_file", fileBlob, "image.png");
+
+    try {
+      const response = await fetch("https://backend.solmc.in/file_upload", {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        // },
+        body: formData,
+        redirect: "follow",
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        return result;
+      } else {
+        toast.error("Failed to upload file. Please try again.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error("An error occurred during file upload. Please try again.");
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { gehc, drName, photo, location, designation, city } = formData;
@@ -47,6 +93,9 @@ const Home = () => {
       return toast.error("Please select doctor's photo");
     }
 
+    const uploadedImageUrl = await uploadFile(photo);
+    if (!uploadedImageUrl) return;
+
     const requestBody = {
       account: "Personality_Revealer",
       project_id: "GE_HealthCare",
@@ -57,7 +106,7 @@ const Home = () => {
         institute_name: location,
         Designation: designation,
         city: city,
-        image: "",
+        image: uploadedImageUrl.filename,
         personality: "",
         selected_feature1: "",
         selected_feature2: "",
@@ -78,7 +127,7 @@ const Home = () => {
       if (response.ok) {
         const result = await response.json();
         setUser(formData);
-        console.log(response);
+        setLastId(result.last_id);
         toast.success("Form submitted successfully");
         navigate("/survey");
       } else {
