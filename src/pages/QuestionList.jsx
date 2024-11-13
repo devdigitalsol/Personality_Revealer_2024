@@ -48,8 +48,6 @@ const QuestionList = () => {
         topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
     setAns(finalPersonality);
-    console.log(finalPersonality);
-    console.log(lastId);
     const payload = {
       account: "Personality_Revealer",
       project_id: "GE_HealthCare",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import shuffle from "../components/Shuffle";
@@ -6,12 +6,16 @@ import questionsData from "./../data/featureData";
 import DRLLOGO from "./../assets/Bottom_Logo.png";
 import Reference from "../components/Reference";
 import ICON from "./../assets/book.png";
+import { AppContext } from "../context/AppContext";
+import axios from "axios";
 
 const Survey = () => {
   const navigate = useNavigate();
+  const { user, setAns, lastId } = useContext(AppContext);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedTopicsData, setSelectedTopicsData] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -22,14 +26,45 @@ const Survey = () => {
   const handleOptionSelect = (index) => {
     if (selectedOptions.includes(index)) {
       setSelectedOptions(selectedOptions.filter((i) => i !== index));
+      setSelectedTopicsData(
+        selectedTopicsData.filter((data, i) => i !== index)
+      );
     } else if (selectedOptions.length < 3) {
       setSelectedOptions([...selectedOptions, index]);
+      setSelectedTopicsData([
+        ...selectedTopicsData,
+        questions[currentQuestion].options[index].topic,
+      ]);
     }
   };
 
   const handleClick = () => {
     if (selectedOptions.length === 3) {
-      navigate("/logo");
+      const payload = {
+        account: "Personality_Revealer",
+        project_id: "GE_HealthCare",
+        collection: "user_data_new",
+        record: {
+          selected_feature1: selectedTopicsData[0],
+          selected_feature2: selectedTopicsData[1],
+          selected_feature3: selectedTopicsData[2],
+        },
+        where: {
+          id: lastId,
+        },
+      };
+      axios
+        .patch("https://backend.solmc.in/records", payload, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+          },
+        })
+        .then((response) => {
+          console.log("Data successfully updated:", response.data);
+          navigate("/logo");
+        })
+        .catch((error) => console.error("Error updating record:", error));
     }
   };
 

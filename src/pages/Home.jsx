@@ -127,6 +127,7 @@ const Home = () => {
       if (response.ok) {
         const result = await response.json();
         setUser(formData);
+        console.log(result.last_id);
         setLastId(result.last_id);
         toast.success("Form submitted successfully");
         navigate("/survey");
