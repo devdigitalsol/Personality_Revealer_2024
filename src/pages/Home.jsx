@@ -127,16 +127,15 @@ const Home = () => {
       if (response.ok) {
         const result = await response.json();
         setUser(formData);
-        console.log(result.last_id);
         setLastId(result.last_id);
         toast.success("Form submitted successfully");
         navigate("/survey");
       } else {
-        toast.error("Failed to submit form. Please try again.");
+        toast.error("Failed to submit form. Please try again.", response);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.", error);
     }
   };
 
