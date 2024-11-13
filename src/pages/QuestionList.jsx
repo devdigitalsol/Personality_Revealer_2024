@@ -4,10 +4,11 @@ import Header from "../components/Header";
 import Options from "../components/Options";
 import { AppContext } from "../context/AppContext";
 import questionsData from "./../data/data";
+import axios from "axios";
 
 const QuestionList = () => {
   const navigate = useNavigate();
-  const { user, setAns } = useContext(AppContext);
+  const { user, setAns, lastId } = useContext(AppContext);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isSelected, setIsSelected] = useState(false);
@@ -47,8 +48,32 @@ const QuestionList = () => {
         topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
     setAns(finalPersonality);
+    console.log(finalPersonality);
+    console.log(lastId);
+    const payload = {
+      account: "Personality_Revealer",
+      project_id: "GE_HealthCare",
+      collection: "user_data_new",
+      record: {
+        personality: finalPersonality,
+      },
+      where: {
+        id: lastId,
+      },
+    };
 
-    navigate("/poster");
+    axios
+      .patch("https://backend.solmc.in/records", payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        },
+      })
+      .then((response) => {
+        console.log("Update successful:", response.data);
+        navigate("/poster");
+      })
+      .catch((error) => console.error("Error updating record:", error));
   }, [confidence, versatility, consistency, navigate, setAns]);
 
   const gotoNext = useCallback(() => {
