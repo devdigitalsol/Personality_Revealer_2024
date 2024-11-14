@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import QuestionList from "./pages/QuestionList";
@@ -26,9 +26,9 @@ function App() {
       <Route path="/survey" element={<Survey />} />
       <Route path="/logo" element={<Logo />} />
       <Route path="/questions" element={<QuestionList />} />
-      {/* <Route path="/description" element={<Description />} /> */}
       <Route path="/poster" element={<Poster />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
     // </ScrollToTop>
   );

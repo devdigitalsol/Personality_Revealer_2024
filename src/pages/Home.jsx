@@ -46,11 +46,14 @@ const Home = () => {
     };
 
     const fileBlob = base64ToBlob(base64String);
+    const mimeType = base64String.split(",")[0].match(/:(.*?);/)[1];
+    const extension = mimeType.split("/")[1];
+
     const formData = new FormData();
     formData.append("account", "Personality_Revealer");
     formData.append("collection", "user_data_new");
     formData.append("project_id", "GE_HealthCare");
-    formData.append("upload_file", fileBlob, "image.png");
+    formData.append("upload_file", fileBlob, `image.${extension}`);
 
     try {
       const response = await fetch("https://backend.solmc.in/file_upload", {
@@ -60,7 +63,7 @@ const Home = () => {
         //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
         // },
         body: formData,
-        redirect: "follow",
+        // redirect: "follow",
       });
 
       if (response.ok) {
