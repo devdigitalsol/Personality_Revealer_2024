@@ -50,48 +50,35 @@ const Home = () => {
     const mimeType = base64String.split(",")[0].match(/:(.*?);/)[1];
     const extension = mimeType.split("/")[1];
 
-    return new Promise((resolve, reject) => {
-      new Compressor(fileBlob, {
-        quality: 0.6,
-        convertSize: 500000,
-        success: async (compressedBlob) => {
-          const formData = new FormData();
-          formData.append("account", "Personality_Revealer");
-          formData.append("collection", "user_data_new");
-          formData.append("project_id", "GE_HealthCare");
-          formData.append("upload_file", compressedBlob, `image.${extension}`);
+    const formData = new FormData();
+    formData.append("account", "Personality_Revealer");
+    formData.append("collection", "user_data_new");
+    formData.append("project_id", "GE_HealthCare");
+    formData.append("upload_file", fileBlob, `image.${extension}`);
 
-          try {
-            const response = await fetch(
-              "https://backend.solmc.in/file_upload",
-              {
-                method: "POST",
-                // headers: {
-                //   "Content-Type": "application/json",
-                //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
-                // },
-                body: formData,
-                // redirect: "follow",
-              }
-            );
-
-            if (response.ok) {
-              const result = await response.json();
-              return result;
-            } else {
-              toast.error("Failed to upload file. Please try again.");
-              return null;
-            }
-          } catch (error) {
-            console.error("Error uploading file:", error);
-            toast.error(
-              "An error occurred during file upload. Please try again."
-            );
-            return null;
-          }
-        },
+    try {
+      const response = await fetch("https://backend.solmc.in/file_upload", {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        // },
+        body: formData,
+        // redirect: "follow",
       });
-    });
+
+      if (response.ok) {
+        const result = await response.json();
+        return result;
+      } else {
+        toast.error("Failed to upload file. Please try again.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error("An error occurred during file upload. Please try again.");
+      return null;
+    }
   };
 
   const handleSubmit = async (e) => {
