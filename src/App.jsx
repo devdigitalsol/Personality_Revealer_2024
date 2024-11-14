@@ -27,8 +27,8 @@ function App() {
       <Route path="/logo" element={<Logo />} />
       <Route path="/questions" element={<QuestionList />} />
       <Route path="/poster" element={<Poster />} />
-      <Route path="/admin" element={<Admin />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      {/* <Route path="/admin" element={<Admin />} /> */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     // </ScrollToTop>
   );
