@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import LOGO from "./../assets/logo2.png";
 import PicModal from "./../components/PicModal";
 import Header from "./../components/Header";
@@ -8,8 +8,6 @@ import Footer from "../components/Footer";
 import TermsModel from "../components/TermsModel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { employees } from "../data/geEmployeeName";
-import Compressor from "compressorjs";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,6 +15,7 @@ const Home = () => {
   const [showTerms, setShowTerms] = useState(false);
   const [term, setTerm] = useState(false);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     gehc: "",
@@ -97,8 +96,13 @@ const Home = () => {
       return toast.error("Please select doctor's photo");
     }
 
+    setLoading(true);
+
     const uploadedImageUrl = await uploadFile(photo);
-    if (!uploadedImageUrl) return;
+    if (!uploadedImageUrl) {
+      setLoading(false);
+      return;
+    }
 
     const requestBody = {
       account: "Personality_Revealer",
@@ -140,6 +144,8 @@ const Home = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("An error occurred. Please try again.", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -168,26 +174,6 @@ const Home = () => {
                       setFormData({ ...formData, gehc: e.target.value })
                     }
                   />
-                  {/* <select
-                    type="text"
-                    id="gehc"
-                    className="focus:outline-none uppercase  w-full leading-6 text-[#662d91] placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2 text-center  shadow-sm;"
-                    value={formData.gehc}
-                    onChange={(e) =>
-                      setFormData({ ...formData, gehc: e.target.value })
-                    }
-                  >
-                    <option disabled="" value="">
-                      GEHC EMPLOYEE NAME
-                    </option>
-                    {employees.map((employee) => {
-                      return (
-                        <option key={employee.id} value={employee.id}>
-                          {employee.name}
-                        </option>
-                      );
-                    })}
-                  </select> */}
                 </div>
 
                 <div className="form-group  ">
@@ -273,19 +259,24 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <button
-              type="submit"
-              className="goBtn"
-              disabled={
-                !formData.drName ||
-                !formData.gehc ||
-                !formData.photo ||
-                !formData.location ||
-                !term
-              }
-            >
-              GO
-            </button>
+
+            {loading ? (
+              <p className="text-center font-bold">Loading...</p>
+            ) : (
+              <button
+                type="submit"
+                className="goBtn"
+                disabled={
+                  !formData.drName ||
+                  !formData.gehc ||
+                  !formData.photo ||
+                  !formData.location ||
+                  !term
+                }
+              >
+                GO
+              </button>
+            )}
           </form>
         </div>
         <Footer />

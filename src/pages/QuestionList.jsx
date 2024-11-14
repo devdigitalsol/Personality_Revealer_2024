@@ -68,7 +68,6 @@ const QuestionList = () => {
         },
       })
       .then((response) => {
-        console.log("Update successful:", response.data);
         navigate("/poster");
       })
       .catch((error) => console.error("Error updating record:", error));

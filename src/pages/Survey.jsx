@@ -39,7 +39,6 @@ const Survey = () => {
   };
 
   const handleClick = () => {
-    console.log(lastId, "lastID");
     if (selectedOptions.length === 3) {
       const payload = {
         account: "Personality_Revealer",
@@ -62,7 +61,6 @@ const Survey = () => {
           },
         })
         .then((response) => {
-          console.log("Data successfully updated:", response.data);
           navigate("/logo");
         })
         .catch((error) => console.error("Error updating record:", error));

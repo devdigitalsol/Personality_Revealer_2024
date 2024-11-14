@@ -109,7 +109,7 @@ const questions = [
   },
   {
     id: 7,
-    question: "In a high-pressure situation, you typically:",
+    question: "In a high-pressure situation, you typically",
     options: [
       {
         data: "Remain composed and lead the team through the challenge.",
