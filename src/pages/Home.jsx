@@ -261,7 +261,7 @@ const Home = () => {
             </div>
 
             {loading ? (
-              <p className="text-center font-bold">Loading...</p>
+              <p className="text-center font-bold">Please Wait...</p>
             ) : (
               <button
                 type="submit"
