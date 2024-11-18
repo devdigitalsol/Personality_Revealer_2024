@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import TermsModel from "../components/TermsModel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -31,51 +32,122 @@ const Home = () => {
     setShowTerms(true);
   };
 
-  const uploadFile = async (base64String) => {
-    const base64ToBlob = (base64) => {
-      const byteString = atob(base64.split(",")[1]);
-      const mimeType = base64.split(",")[0].match(/:(.*?);/)[1];
+  // const compressImage = (file, maxWidth = 800, maxHeight = 800) => {
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image();
+  //     const reader = new FileReader();
 
-      const byteNumbers = new Array(byteString.length);
-      for (let i = 0; i < byteString.length; i++) {
-        byteNumbers[i] = byteString.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
+  //     reader.onload = () => {
+  //       img.src = reader.result;
+  //     };
+  //     reader.onerror = reject;
 
-      return new Blob([byteArray], { type: mimeType });
-    };
+  //     reader.readAsDataURL(file);
 
-    const fileBlob = base64ToBlob(base64String);
-    const mimeType = base64String.split(",")[0].match(/:(.*?);/)[1];
-    const extension = mimeType.split("/")[1];
+  //     img.onload = () => {
+  //       const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+  //       const width = img.width * ratio;
+  //       const height = img.height * ratio;
 
-    const formData = new FormData();
+  //       const canvas = document.createElement("canvas");
+  //       const ctx = canvas.getContext("2d");
+
+  //       canvas.width = width;
+  //       canvas.height = height;
+
+  //       ctx.drawImage(img, 0, 0, width, height);
+
+  //       const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+
+  //       resolve(compressedBase64);
+  //     };
+  //   });
+  // };
+
+  // const uploadFile = async (base64String) => {
+  //   // const compressedBase64 = await compressImage(base64String);
+  //   console.log(base64String);
+  //   const base64ToBlob = (base64) => {
+  //     const byteString = atob(base64.split(",")[1]);
+  //     const mimeType = base64.split(",")[0].match(/:(.*?);/)[1];
+
+  //     const byteNumbers = new Array(byteString.length);
+  //     for (let i = 0; i < byteString.length; i++) {
+  //       byteNumbers[i] = byteString.charCodeAt(i);
+  //     }
+  //     const byteArray = new Uint8Array(byteNumbers);
+
+  //     return new Blob([byteArray], { type: mimeType });
+  //   };
+
+  //   const fileBlob = base64ToBlob(base64String);
+  //   console.log(fileBlob);
+  //   const mimeType = base64String.split(",")[0].match(/:(.*?);/)[1];
+  //   const extension = mimeType.split("/")[1];
+
+  //   const formData = new FormData();
+  //   formData.append("account", "Personality_Revealer");
+  //   formData.append("collection", "user_data_new");
+  //   formData.append("project_id", "GE_HealthCare");
+  //   formData.append("upload_file", fileBlob, `image.${extension}`);
+
+  //   try {
+  //     const response = await fetch("https://backend.solmc.in/file_upload", {
+  //       method: "POST",
+  //       // headers: {
+  //       //   "Content-Type": "application/json",
+  //       //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+  //       // },
+  //       body: formData,
+  //       // redirect: "follow",
+  //     });
+
+  //     if (response.ok) {
+  //       const result = await response.json();
+  //       return result;
+  //     } else {
+  //       toast.error("Failed to upload file. Please try again.");
+  //       return null;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error uploading file:", error);
+  //     toast.error("An error occurred during file upload. Please try again.");
+  //     return null;
+  //   }
+  // };
+
+  const uploadFile = async (imageSrc) => {
+    let formData = new FormData();
+    const blob = await fetch(imageSrc).then((res) => res.blob());
+    console.log(blob);
+
     formData.append("account", "Personality_Revealer");
     formData.append("collection", "user_data_new");
     formData.append("project_id", "GE_HealthCare");
-    formData.append("upload_file", fileBlob, `image.${extension}`);
+    formData.append("upload_file", blob);
+
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "content-type": "multipart/form-data",
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+    };
 
     try {
-      const response = await fetch("https://backend.solmc.in/file_upload", {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
-        // },
-        body: formData,
-        // redirect: "follow",
-      });
+      const resp = await axios.post(
+        `https://backend.solmc.in/file_upload`,
+        formData,
+        {
+          headers,
+        }
+      );
 
-      if (response.ok) {
-        const result = await response.json();
+      if (resp.data.status == 200) {
+        const result = resp?.data?.filename;
+        setLoading(false);
         return result;
-      } else {
-        toast.error("Failed to upload file. Please try again.");
-        return null;
       }
     } catch (error) {
-      console.error("Error uploading file:", error);
-      toast.error("An error occurred during file upload. Please try again.");
+      setLoading(false);
       return null;
     }
   };
@@ -99,6 +171,7 @@ const Home = () => {
     setLoading(true);
 
     const uploadedImageUrl = await uploadFile(photo);
+    console.log(uploadedImageUrl);
     if (!uploadedImageUrl) {
       setLoading(false);
       return;
@@ -114,7 +187,7 @@ const Home = () => {
         institute_name: location,
         Designation: designation,
         city: city,
-        image: uploadedImageUrl.filename,
+        image: uploadedImageUrl,
         personality: "",
         selected_feature1: "",
         selected_feature2: "",
