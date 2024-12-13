@@ -9,17 +9,7 @@ import Description from "./pages/Description";
 import Logo from "./pages/Logo";
 
 function App() {
-  // const ScrollToTop = (props) => {
-  //   const location = useLocation();
-  //   useEffect(() => {
-  //     window.scrollTo(0, 0);
-  //   }, [location]);
-
-  //   return <>{props.children}</>;
-  // };
-
   return (
-    // <ScrollToTop>
     <Routes>
       <Route path="/" element={<Description />} />
       <Route path="/home" element={<Home />} />
@@ -27,10 +17,8 @@ function App() {
       <Route path="/logo" element={<Logo />} />
       <Route path="/questions" element={<QuestionList />} />
       <Route path="/poster" element={<Poster />} />
-      {/* <Route path="/admin" element={<Admin />} /> */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
-    // </ScrollToTop>
   );
 }
 
