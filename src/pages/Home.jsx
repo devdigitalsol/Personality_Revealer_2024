@@ -12,11 +12,14 @@ import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { extension } = useContext(AppContext);
   const { setUser, setLastId } = useContext(AppContext);
   const [showTerms, setShowTerms] = useState(false);
   const [term, setTerm] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const fileName = "image";
+  const fullFileName = `${fileName}.${extension}`;
 
   const [formData, setFormData] = useState({
     gehc: "",
@@ -75,7 +78,7 @@ const Home = () => {
     formData.append("account", "Personality_Revealer");
     formData.append("collection", "user_data_new");
     formData.append("project_id", "GE_HealthCare");
-    formData.append("upload_file", blobNew);
+    formData.append("upload_file", blobNew, fullFileName);
 
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -147,6 +150,7 @@ const Home = () => {
     };
 
     try {
+      console.log(requestBody, "body");
       const response = await fetch("https://backend.solmc.in/records", {
         method: "POST",
         headers: {
