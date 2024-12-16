@@ -2,15 +2,15 @@ import { useState } from "react";
 
 const Options = ({
   options,
-  isSelected,
-  setIsSelected,
-  setNextQuestion,
   setConfidence,
   setVersatility,
   setConsistency,
+  setNextQuestion,
+  setIsSelected,
+  isSelected,
+  selectedOptionIndex,
+  setSelectedOptionIndex,
 }) => {
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
-
   if (!Array.isArray(options)) {
     console.error("Options prop is not an array:", options);
     return null;
@@ -40,17 +40,19 @@ const Options = ({
   return (
     <div className="flex flex-col items-center gap-4 px-0">
       {options.map((option, index) => (
-        <button
-          key={index}
-          onClick={(e) => handleClick(e, index)}
-          disabled={isSelected}
-          className={`ansBtn ${
-            selectedOptionIndex === index ? "selected" : ""
-          }`}
-          data-personality={option.personality}
-        >
-          <span className="px-4">{option.data}</span>
-        </button>
+        <>
+          <button
+            key={index}
+            onClick={(e) => handleClick(e, index)}
+            disabled={isSelected}
+            className={`ansBtn ${
+              selectedOptionIndex === index ? "selected" : ""
+            }`}
+            data-personality={option.personality}
+          >
+            <span className="px-4">{option.data}</span>
+          </button>
+        </>
       ))}
     </div>
   );

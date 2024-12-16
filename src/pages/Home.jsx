@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import LOGO from "./../assets/logo2.png";
 import PicModal from "./../components/PicModal";
 import Header from "./../components/Header";
@@ -8,19 +8,23 @@ import Footer from "../components/Footer";
 import TermsModel from "../components/TermsModel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AppContext);
+  const { setUser, setLastId } = useContext(AppContext);
   const [showTerms, setShowTerms] = useState(false);
   const [term, setTerm] = useState(false);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     gehc: "",
     drName: "",
     photo: "",
     location: "",
+    designation: "",
+    city: "",
     termCheckBox: "",
   });
 
@@ -28,19 +32,144 @@ const Home = () => {
     setShowTerms(true);
   };
 
-  const handleSubmit = (e) => {
+  const compressImage = (file, maxWidth = 800, maxHeight = 800) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        img.src = reader.result;
+      };
+      reader.onerror = reject;
+
+      reader.readAsDataURL(file);
+
+      img.onload = () => {
+        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+        const width = img.width * ratio;
+        const height = img.height * ratio;
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+
+        resolve(compressedBase64);
+      };
+    });
+  };
+
+  const uploadFile = async (imageSrc) => {
+    let formData = new FormData();
+    const blob = await fetch(imageSrc).then((res) => res.blob());
+
+    const compressedImg = await compressImage(blob);
+
+    const blobNew = await fetch(compressedImg).then((res) => res.blob());
+
+    formData.append("account", "Personality_Revealer");
+    formData.append("collection", "user_data_new");
+    formData.append("project_id", "GE_HealthCare");
+    formData.append("upload_file", blobNew);
+
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "content-type": "multipart/form-data",
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+    };
+
+    try {
+      const resp = await axios.post(
+        `https://backend.solmc.in/file_upload`,
+        formData,
+        {
+          headers,
+        }
+      );
+
+      if (resp.data.status == 200) {
+        const result = resp?.data?.filename;
+        setLoading(false);
+        return result;
+      }
+    } catch (error) {
+      setLoading(false);
+      return null;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { gehc, drName, photo, location } = formData;
-    if (!gehc.trim() || !drName.trim() || !location.trim()) {
+    const { gehc, drName, photo, location, designation, city } = formData;
+    if (
+      !gehc.trim() ||
+      !drName.trim() ||
+      !location.trim() ||
+      !designation.trim() ||
+      !city.trim()
+    ) {
       return toast.error("Please fill all the fields");
     }
     if (!photo) {
       return toast.error("Please select doctor's photo");
     }
 
-    setUser(formData);
-    toast.success("Form submitted successfully");
-    navigate("/survey");
+    setLoading(true);
+
+    const uploadedImageUrl = await uploadFile(photo);
+    if (!uploadedImageUrl) {
+      setLoading(false);
+      return;
+    }
+
+    const requestBody = {
+      account: "Personality_Revealer",
+      project_id: "GE_HealthCare",
+      collection: "user_data_new",
+      record: {
+        gehc_employee_name: gehc,
+        particiapant_name: drName,
+        institute_name: location,
+        Designation: designation,
+        city: city,
+        image: uploadedImageUrl,
+        personality: "",
+        selected_feature1: "",
+        selected_feature2: "",
+        selected_feature3: "",
+        certificate: "",
+      },
+    };
+
+    try {
+      const response = await fetch("https://backend.solmc.in/records", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+      if (response.ok) {
+        const result = await response.json();
+        setUser(formData);
+        setLastId(result.last_id);
+        toast.success("Form submitted successfully");
+        navigate("/survey");
+      } else {
+        toast.error("Failed to submit form. Please try again.", response);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred. Please try again.", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,32 +187,16 @@ const Home = () => {
             <div className="flex flex-col gap-6">
               <div className="bg-white p-4 rounded">
                 <div className="form-group">
-                  {/* <input
+                  <input
                     type="text"
                     placeholder="GEHC EMPLOYEE NAME"
-                    className="form-control border-0 text-center uppercase"
+                    className="form-control text-center uppercase"
                     id="gehc"
                     value={formData.gehc}
                     onChange={(e) =>
                       setFormData({ ...formData, gehc: e.target.value })
                     }
-                  /> */}
-                  <select
-                    type="text"
-                    id="gehc"
-                    className="focus:outline-none  w-full leading-6 text-[#662d91] placeholder-[#662d91] border-[#662d91] text-sm py-2 px-3 border-b-2 text-center  shadow-sm;"
-                    value={formData.gehc}
-                    onChange={(e) =>
-                      setFormData({ ...formData, gehc: e.target.value })
-                    }
-                  >
-                    <option disabled="" value="">
-                      GEHC EMPLOYEE NAME
-                    </option>
-                    <option value="Emp1">Emp1</option>
-                    <option value="Emp2">Emp2</option>
-                    <option value="Emp3">Emp3</option>
-                  </select>
+                  />
                 </div>
 
                 <div className="form-group  ">
@@ -99,7 +212,7 @@ const Home = () => {
                   />
                 </div>
 
-                <div className="form-group pb-4 ">
+                <div className="form-group  ">
                   <input
                     type="text"
                     placeholder="INSTITUTE NAME"
@@ -108,6 +221,32 @@ const Home = () => {
                     value={formData.location}
                     onChange={(e) =>
                       setFormData({ ...formData, location: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="form-group ">
+                  <input
+                    type="text"
+                    placeholder="DESIGNATION"
+                    className="form-control text-center uppercase"
+                    id="designation"
+                    value={formData.designation}
+                    onChange={(e) =>
+                      setFormData({ ...formData, designation: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="form-group pb-4 ">
+                  <input
+                    type="text"
+                    placeholder="CITY"
+                    className="form-control text-center uppercase"
+                    id="city"
+                    value={formData.city}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
                     }
                   />
                 </div>
@@ -143,19 +282,24 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <button
-              type="submit"
-              className="goBtn"
-              disabled={
-                !formData.drName ||
-                !formData.gehc ||
-                !formData.photo ||
-                !formData.location ||
-                !term
-              }
-            >
-              GO
-            </button>
+
+            {loading ? (
+              <p className="text-center font-bold">Please Wait...</p>
+            ) : (
+              <button
+                type="submit"
+                className="goBtn"
+                disabled={
+                  !formData.drName ||
+                  !formData.gehc ||
+                  !formData.photo ||
+                  !formData.location ||
+                  !term
+                }
+              >
+                GO
+              </button>
+            )}
           </form>
         </div>
         <Footer />

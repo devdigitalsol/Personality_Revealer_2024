@@ -7,6 +7,7 @@ const PicModal = ({ show, setShow, setFormData }) => {
   const fileRef = useRef();
   const types = ["image/png", "image/jpeg"];
   const [src, setSrc] = useState();
+
   const selectImg = (e) => {
     let file = e.target.files[0];
     if (file && types.includes(file.type)) {
@@ -19,8 +20,8 @@ const PicModal = ({ show, setShow, setFormData }) => {
       alert("Please select an image file (jpeg or jpg)");
     }
   };
+
   const cropImg = useCallback(() => {
-    // setNewPic(cropperRef.current.cropper.getCroppedCanvas().toDataURL());
     setFormData((prev) => {
       return {
         ...prev,
@@ -29,6 +30,7 @@ const PicModal = ({ show, setShow, setFormData }) => {
     });
     setShow(false);
   }, [setShow, setFormData]);
+
   return (
     <>
       {show && (

@@ -4,16 +4,19 @@ import Header from "../components/Header";
 import Options from "../components/Options";
 import { AppContext } from "../context/AppContext";
 import questionsData from "./../data/data";
+import axios from "axios";
 
 const QuestionList = () => {
   const navigate = useNavigate();
-  const { user, setAns } = useContext(AppContext);
+  const { user, setAns, lastId } = useContext(AppContext);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isSelected, setIsSelected] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [nextQuestion, setNextQuestion] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
 
   const [confidence, setConfidence] = useState(0);
   const [versatility, setVersatility] = useState(0);
@@ -45,11 +48,33 @@ const QuestionList = () => {
         topPersonalities[Math.floor(Math.random() * topPersonalities.length)];
     }
     setAns(finalPersonality);
+    const payload = {
+      account: "Personality_Revealer",
+      project_id: "GE_HealthCare",
+      collection: "user_data_new",
+      record: {
+        personality: finalPersonality,
+      },
+      where: {
+        id: lastId,
+      },
+    };
 
-    navigate("/poster");
+    axios
+      .patch("https://backend.solmc.in/records", payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+        },
+      })
+      .then((response) => {
+        navigate("/poster");
+      })
+      .catch((error) => console.error("Error updating record:", error));
   }, [confidence, versatility, consistency, navigate, setAns]);
 
   const gotoNext = useCallback(() => {
+    setSelectedOptionIndex(-1);
     const nextqt = currentQuestion + 1;
     if (nextqt < questions.length) {
       setCurrentQuestion(nextqt);
@@ -100,6 +125,11 @@ const QuestionList = () => {
               setConfidence={setConfidence}
               setVersatility={setVersatility}
               setConsistency={setConsistency}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              questionIndex={currentQuestion}
+              selectedOptionIndex={selectedOptionIndex}
+              setSelectedOptionIndex={setSelectedOptionIndex}
             />
           )}
         </div>

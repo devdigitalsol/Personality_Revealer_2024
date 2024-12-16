@@ -37,7 +37,7 @@ const questions = [
   },
   {
     id: 3,
-    question: "What’s your approach to learning new imaging technologies?",
+    question: "What’s your approach to learning new technologies?",
     options: [
       {
         data: "I dive in with confidence, mastering the new technology quickly.",
@@ -55,7 +55,7 @@ const questions = [
   },
   {
     id: 4,
-    question: "When a colleague needs help with a difficult situation:",
+    question: "When a colleague needs help with a difficult situation",
     options: [
       {
         data: "I offer my insights and provide a clear path forward.",
@@ -109,7 +109,7 @@ const questions = [
   },
   {
     id: 7,
-    question: "In a high-pressure situation, you typically:",
+    question: "In a high-pressure situation, you typically",
     options: [
       {
         data: "Remain composed and lead the team through the challenge.",
