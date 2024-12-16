@@ -1,15 +1,19 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import { AppContext } from "../context/AppContext";
 
 const PicModal = ({ show, setShow, setFormData }) => {
   const cropperRef = useRef();
   const fileRef = useRef();
   const types = ["image/png", "image/jpeg"];
   const [src, setSrc] = useState();
+  const { setExtension } = useContext(AppContext);
 
   const selectImg = (e) => {
     let file = e.target.files[0];
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+    setExtension(fileExtension);
     if (file && types.includes(file.type)) {
       const reader = new FileReader();
       reader.onload = () => {
