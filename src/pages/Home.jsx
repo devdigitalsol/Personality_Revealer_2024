@@ -109,6 +109,22 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { gehc, drName, photo, location, designation, city } = formData;
+
+    if (gehc.length > 100) {
+      return toast.error("GEHC name should not exceed 100 characters");
+    }
+    if (drName.length > 100) {
+      return toast.error("Doctor name should not exceed 100 characters");
+    }
+    if (location.length > 100) {
+      return toast.error("location name should not exceed 100 characters");
+    }
+    if (designation.length > 150) {
+      return toast.error("Designation should not exceed 150 characters");
+    }
+    if (city.length > 150) {
+      return toast.error("city name should not exceed 150 characters");
+    }
     if (
       !gehc.trim() ||
       !drName.trim() ||
