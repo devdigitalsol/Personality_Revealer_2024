@@ -3,7 +3,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import QuestionList from "./pages/QuestionList";
 import Poster from "./pages/Poster";
-import Admin from "./pages/Admin";
 import Survey from "./pages/Survey";
 import Description from "./pages/Description";
 import Logo from "./pages/Logo";

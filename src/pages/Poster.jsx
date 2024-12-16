@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-// import axios from "axios";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import CONFIDENT from "./../assets/img1.png";
@@ -14,52 +13,7 @@ const Poster = () => {
   const navigate = useNavigate();
   const { user, ans } = useContext(AppContext);
 
-  // const downLoadPoster = () => {
-  //   setLoading(true);
-  //   window.scrollTo(0, 0);
-  //   html2canvas(document.getElementById("templateView"), {
-  //     allowTaint: true,
-  //     useCORS: true,
-  //     logging: true,
-  //     scrollX: 0,
-  //     scrollY: -window.scrollY,
-  //     onrendered: function (canvas) {
-  //       document.body.appendChild(canvas);
-  //       window.scrollTo(0, 0);
-  //     },
-  //   })
-  //     .then(async (canvas) => {
-  //       var myImage = canvas.toDataURL("image/jpeg", 0.9);
-  //       const jsonData = {
-  //         empId: user.empId,
-  //         drName: user.drName,
-  //         poster: myImage,
-  //       };
-  //       try {
-  //         const response = await axios.post(
-  //           "https://www.omezfirstpersonalityrevealer.in/add-user.php",
-  //           JSON.stringify(jsonData)
-  //         );
-  //         const link = document.createElement("a");
-  //         link.href = `https://www.omezfirstpersonalityrevealer.in/${response.data.path}`;
-  //         link.target = "_blank";
-  //         link.setAttribute("download", "image.jpeg");
-  //         document.body.appendChild(link);
-  //         link.click();
-  //         setLoading(false);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       setLoading(false);
-  //       console.log(error);
-  //       alert("oops, something went wrong!", error);
-  //     });
-  // };
-
   const downloadImage = () => {
-    // setIsLoading(true);
     window.scrollTo(0, 0);
     html2canvas(document.getElementById("templateView"), {
       allowTaint: true,
@@ -74,14 +28,12 @@ const Poster = () => {
     })
       .then((canvas) => {
         var myImage = canvas.toDataURL("image/jpeg", 0.8);
-        // uploadData(myImage);
         const link = document.createElement("a");
         link.href = myImage;
         link.target = "_blank";
         link.setAttribute("download", "image.jpeg");
         document.body.appendChild(link);
         link.click();
-        // setIsLoading(false);
       })
       .catch(function (error) {
         console.log(error);

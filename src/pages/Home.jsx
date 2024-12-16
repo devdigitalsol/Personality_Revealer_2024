@@ -68,13 +68,9 @@ const Home = () => {
     let formData = new FormData();
     const blob = await fetch(imageSrc).then((res) => res.blob());
 
-    console.log(blob, "without compressed");
-
     const compressedImg = await compressImage(blob);
 
     const blobNew = await fetch(compressedImg).then((res) => res.blob());
-
-    console.log(blobNew, "Compressed image");
 
     formData.append("account", "Personality_Revealer");
     formData.append("collection", "user_data_new");
@@ -126,7 +122,6 @@ const Home = () => {
     setLoading(true);
 
     const uploadedImageUrl = await uploadFile(photo);
-    console.log(uploadedImageUrl);
     if (!uploadedImageUrl) {
       setLoading(false);
       return;

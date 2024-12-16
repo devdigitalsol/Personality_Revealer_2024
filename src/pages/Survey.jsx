@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import shuffle from "../components/Shuffle";
 import questionsData from "./../data/featureData";
 import DRLLOGO from "./../assets/Bottom_Logo.png";
 import Reference from "../components/Reference";
