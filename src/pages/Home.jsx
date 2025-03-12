@@ -83,7 +83,7 @@ const Home = () => {
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "content-type": "multipart/form-data",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3NTQ3NDE2NjAifQ.1M7D7S2jzmrl7e-xLilp3CSAXtrHo3XKItyN0YBbt8Y`,
     };
 
     try {
@@ -110,21 +110,6 @@ const Home = () => {
     e.preventDefault();
     const { gehc, drName, photo, location, designation, city } = formData;
 
-    if (gehc.length > 100) {
-      return toast.error("GEHC name should not exceed 100 characters");
-    }
-    if (drName.length > 100) {
-      return toast.error("Doctor name should not exceed 100 characters");
-    }
-    if (location.length > 100) {
-      return toast.error("location name should not exceed 100 characters");
-    }
-    if (designation.length > 150) {
-      return toast.error("Designation should not exceed 150 characters");
-    }
-    if (city.length > 150) {
-      return toast.error("city name should not exceed 150 characters");
-    }
     if (
       !gehc.trim() ||
       !drName.trim() ||
@@ -171,7 +156,7 @@ const Home = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3MzkzNjE2MzIifQ.0Si6IXOrBQTXx4XzPoKgqydS6Ac6DcU1PyCcHFcvD6E`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb2xtYyIsIm5hbWUiOiJzb2xtYyIsImV4cCI6IjE3NTQ3NDE2NjAifQ.1M7D7S2jzmrl7e-xLilp3CSAXtrHo3XKItyN0YBbt8Y`,
         },
         body: JSON.stringify(requestBody),
       });
@@ -212,6 +197,7 @@ const Home = () => {
                     placeholder="GEHC EMPLOYEE NAME"
                     className="form-control text-center uppercase"
                     id="gehc"
+                    maxLength="100"
                     value={formData.gehc}
                     onChange={(e) =>
                       setFormData({ ...formData, gehc: e.target.value })
@@ -225,6 +211,7 @@ const Home = () => {
                     placeholder="PARTICIPANT NAME"
                     className="form-control text-center uppercase"
                     id="drName"
+                    maxLength="100"
                     value={formData.drName}
                     onChange={(e) =>
                       setFormData({ ...formData, drName: e.target.value })
@@ -238,6 +225,7 @@ const Home = () => {
                     placeholder="INSTITUTE NAME"
                     className="form-control text-center uppercase"
                     id="location"
+                    maxLength="150"
                     value={formData.location}
                     onChange={(e) =>
                       setFormData({ ...formData, location: e.target.value })
@@ -251,6 +239,7 @@ const Home = () => {
                     placeholder="DESIGNATION"
                     className="form-control text-center uppercase"
                     id="designation"
+                    maxLength="150"
                     value={formData.designation}
                     onChange={(e) =>
                       setFormData({ ...formData, designation: e.target.value })
@@ -264,6 +253,7 @@ const Home = () => {
                     placeholder="CITY"
                     className="form-control text-center uppercase"
                     id="city"
+                    maxLength="100"
                     value={formData.city}
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
